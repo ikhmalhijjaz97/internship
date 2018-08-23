@@ -1,0 +1,178 @@
+``` book.js
+(function () {
+    var controllerId = 'app.views.newbooks.book';
+    angular.module('app').controller(controllerId, ['$scope', 'abp.services.app.books', 'abp.services.app.category', function ($scope, booksService, categoryService) {
+        debugger
+        var vm = this;
+   
+        vm.books = [];
+        vm.showEdit = true;
+        vm.showSubmit = false;
+        vm.book = {
+
+            bookName: '',
+            categoryId: '',
+            dateCreated: '',
+            pageNum: ''
+        };
+        function getlist() {
+            booksService.listAll()
+                .then(function (result) {
+                    vm.books = result.data;
+                });
+        }
+
+
+        // search part
+        vm.datasearch = [];
+        vm.hold = [];
+        vm.word = [];
+        var vm = this;
+
+
+        // search part
+
+        function getlisttrial(input2) {
+            booksService.listAll()
+                .then(function (result) {
+                    vm.datasearch = result.data;
+                    for (var i = 0, hijjaz = 0, m = 0; i < vm.datasearch.length, m < vm.datasearch.length; i++) {
+                        if (vm.datasearch[i].bookName == input2[m]) {
+                            vm.hold[hijjaz] = vm.datasearch[i];
+                            hijjaz++;
+                        }
+                        if (i == vm.datasearch.length-1) {
+                            i = 0;
+                            m++;
+                        }
+
+                    }
+                });
+
+            vm.datasearch = [];
+        }
+        vm.showsearch = function (inputVal) {
+            $('#Search').modal('show');
+            vm.datasearch = [];
+            var input2 = [];
+            input2 = inputVal.split(" ");
+            getlisttrial(input2);
+
+        }
+
+        //function Actionresult (word){
+        //    if (word != null) {
+        //        return View(db.GdexApps.Where(x = > x.Name.StartsWith(word) || search == null).ToList());
+        //    }
+        //}
+        // category ID
+   
+        function getCategories() {
+            debugger
+            categoryService.listAll()
+                .then(function (result) {
+                    vm.Cate = result.data;
+                });
+        }
+
+        getCategories();
+        // button click 
+        //new
+        vm.openModalforNew = function () {
+            $('#Booklist').modal('show');
+            //  vm.book.id = '';
+            vm.book.bookName = '';
+            vm.book.categoryId = '';
+            vm.book.pageNum = '';
+            vm.showEdit = false;
+            vm.showSubmit = true;
+
+        }
+
+
+
+        //edit
+        vm.openUserEditModal = function (user) {
+            debugger
+            $('#Booklist').modal('show');
+            vm.books.id = user.id;
+            vm.book.bookName = user.bookName;
+            vm.book.dateCreated = user.dateCreated;
+            vm.book.categoryId = user.categoryId;
+            vm.book.pageNum = user.pageNum;
+
+            vm.showEdit = true;
+            vm.showSubmit = false;
+            vm.entity = user;
+
+        }
+
+        //edit which is update
+
+        vm.edit = function (data) {
+            debugger
+            var x = {};
+            x = vm.entity;
+            x.id = vm.entity.id;
+            x.bookName = data.book.bookName;
+            x.categoryId = data.book.categoryId;
+            x.dateCreated = data.book.dateCreated;
+            x.pageNum = data.book.pageNum;
+
+
+
+
+            abp.ui.setBusy();
+            booksService.update(x).then(function () {
+                abp.notify.info("saved Sucess");
+                $uibModalInstance.close();
+            })
+                .finally(function () {
+                    abp.ui.clearBusy();
+                    getlist();
+                });
+        }
+
+
+
+        // create
+        vm.save = function (data) {
+            abp.ui.setBusy();
+            booksService.create(vm.book)
+                .then(function () {
+                    abp.notify.info("saved Sucess");
+                    $uibModalInstance.close();
+                })
+                .finally(function () {
+                    abp.ui.clearBusy();
+                    getlist();
+                });
+        }
+
+
+
+        // deleet 
+        vm.delete = function (user) {
+            abp.message.confirm(
+                "Delete user '" + user.bookName + "'?",
+                function (result) {
+                    if (result) {
+                        booksService.delete({ id: user.id })
+                            .then(function () {
+                                abp.notify.info("Deleted Book: " + user.bookName);
+
+                            });
+                    }
+
+                });
+            getList();
+        }
+
+
+        getlist();
+
+
+    }
+    ]);
+})();
+```
