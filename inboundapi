@@ -1,0 +1,41 @@
+```(function () {
+    var controllerId = 'app.views.inbound.inboundAPI';
+    angular.module('app').controller(controllerId, [
+        '$scope', 'abp.services.app.inboundAPI',
+        function ($scope, InboundApiService) {
+            var vm = this;
+            debugger
+            vm.inbound=[];
+            function resfreshpage() {
+                InboundApiService.listAll().then(
+                    function (result) {
+                        vm.inbound = result.data;
+                    }
+                );
+            }
+
+            refreshpage();
+
+            vm.show = function (data1) {
+                vm.inbound1 = [];
+                vm.inbound2 = [];
+                abp.ui.setBusy();
+                InboundApiService.listAll().then(
+                    function (result) {
+                        vm.inbound1 = result.data;
+                    }
+                );
+
+                for (var i = 0,j=0; i < vm.inbound1.length; i++){
+                    if (vm.inbound1[i].CN === data1) {
+                        vm.inbound2[j] = vm.inbound1[i];
+                        j++;
+                    }
+                }
+                abp.ui.clearBusy();
+                refreshpage();
+            }
+        }
+    ]);
+});
+```
