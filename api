@@ -1,0 +1,357 @@
+```
+(function () {
+    var controllerId = 'app.views.INBOUNDAPI.inbound';
+    angular.module('app').controller(controllerId, [
+        '$scope', 'abp.services.app.inboundApi',
+        function ($scope, inboundApiService) {
+            
+            var vm = this;
+            debugger
+           //
+            vm.inbound = [];
+            vm.x = {
+                accountNum : '',
+                coDpayment : '',
+                consigneeAddress1 : '',
+                consigneeAddress2 : '',
+                consigneeAddress3 : '',
+                consigneecompany : '',
+                consigneecontactnumber1 : '',
+                consigneecontactnumber2 : '',
+                consigneeName : '',
+                consignmentdate : '',
+                height : '',
+                length : '',
+                pickuptype : '',
+                pieces : '',
+                postcode : '',
+                productdescription : '',
+                refenceID :'',
+                remark : '',
+                sendingagentNum : '',
+                shipmenttype : '',
+                state : '',
+                town :'',
+                weight : '',
+                width : ''
+            };
+
+            function resfreshpage() {
+                InboundApiService.listAll().then(
+                    function (result) {
+                        vm.inbound = result.data;
+                    }
+                );
+            }
+            
+           
+
+            vm.showing = function (CN) {
+                debugger
+                $('#update').modal('show');
+                vm.inbound1 = [];
+                vm.inbound2 = [];
+                abp.ui.setBusy();
+                inboundApiService.listAll().then(
+                    function (result) {
+                        vm.inbound1 = result.data;
+                        for (var i = 0, j = 0; i < vm.inbound1.length; i++) {
+                            if (vm.inbound1[i].cn == CN) {
+                                vm.inbound2[j] = vm.inbound1[i];
+                                j++;
+                            }
+                        }
+                    }
+                );
+
+               
+                abp.ui.clearBusy();
+                refreshpage();
+            }
+
+
+            vm.update = function (data2) {
+                var y = {};
+                y = vm.entity;
+                y.Id = vm.entity.Id;
+                y.accountNum = data2.inbound2.accountNum;
+                y.coDpayment = data2.inbound2.coDpayment;
+                y.consigneeAddress1 = data2.inbound2.consigneeAddress1;
+                y.consigneeAddress2 = data2.inbound2.consigneeAddress2;
+                y.consigneeAddress3 = data2.inbound2.consigneeAddress3;
+                y.consigneecompany = data2.inbound2.consigneecompany;
+                y.consigneecontactnumber1 = data2.inbound2.consigneecontactnumber1;
+                y.consigneecontactnumber2 = data2.inbound2.consigneecontactnumber2;
+                y.consigneeName = data2.inbound2.consigneeName;
+                y.consignmentdate = data2.inbound2.consignmentdate;
+                y.height = data2.inbound2.height;
+                y.length = data2.inbound2.length;
+                y.pickuptype = data2.inbound2.pickuptype;
+                y.pieces = data2.inbound2.pieces;
+                y.postcode = data2.inbound2.postcode;
+                y.productdescription = data2.inbound2.productdescription;
+                y.refenceID = data2.inbound2.refenceID;
+                y.remark = data2.inbound2.remark;
+                y.sendingagentNum = data2.inbound.sendingagentNum;
+                y.shipmenttype = data2.inbound2.shipmenttype;
+                y.state = data2.inbound2.state;
+                y.town = data2.inbound2.town;
+                y.weight = data2.inbound2.weight;
+                y.width = data2.inbound2.width;
+                abp.ui.setBusy();
+                inboundApiService.update(y).then(
+                    function () {
+                        abp.notify.info("saved");
+                        $uibModalInstance.close();
+                    }
+                ).finnaly(
+                    function () {
+                        abp.ui.clearBusy();
+                        $('#update').modal('hide');
+                    });
+
+            }
+
+
+        }
+    ]);
+})();
+
+
+
+//////(function () {
+//////    angular.module('app').controller('huhu', ['$scope', 'abp.services.app.InboundApi', function ($scope, inboundService) {
+//////        debugger
+//////        var vm = this;
+//////    }]);
+//////});
+
+
+
+
+
+
+
+
+//(function () {
+//    var controllerId = 'app.views.INBOUNDAPI.inbound';
+//    angular.module('app').controller(controllerId, [
+//        '$scope', 'abp.services.app.inboundApi',
+//        function ($scope, authorService) {
+//            debugger
+//            var vm = this;
+            
+
+            
+//        }
+//    ]);
+//})();
+
+//var checkPassword = function () {
+
+//    if ($password == $confirmpassword) {
+//        userService.update(vm.user.password);
+//    }
+//    else {
+//        console.log("Password not match. Please reenter.");
+//    }
+//}
+
+
+//vm.save = function () {
+//    var assingnedRoles = [];
+
+//    for (var i = 0; i < vm.roles.length; i++) {
+//        var role = vm.roles[i];
+//        if (!role.isAssigned) {
+//            continue;
+//        }
+
+//        assingnedRoles.push(role.name);
+//    }
+
+//    vm.user.roleNames = assingnedRoles;
+//    userService.update(vm.user)
+//        .then(function () {
+//            abp.notify.info(App.localize('SavedSuccessfully'));
+//            $uibModalInstance.close();
+//        });
+//};
+
+
+
+
+
+
+
+
+<div ng-app="app" ng-controller="app.views.INBOUNDAPI.inbound as vm">
+
+    <!--Part 10 tutorial start-->
+    <div>
+        <label>please enter cn number</label>
+        <input type="text" class="form-control" ng-model="CN" />
+        <button ng-click="vm.showing(CN)">SUBMIT</button>
+    </div>
+    <div id="update"  name="userEditform" class="modal fade" role="dialog" >
+        <div class="modal-dialog modal-lg" style="width:80%">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form>
+                        <div class=" container">
+                            <div class="row">
+                                <div class=" col-md-5">
+                                    <label>CN Item</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].cn" />
+                                </div>
+                                <div class=" col-md-5">
+                                    <label>Agent Number</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].sendingagentNum"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class=" col-md-5">
+                                    <label>Product</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].product" />
+                                </div>
+                                <div class="col-md-5">
+                                    <label>Account Number</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].accountNo" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col-md-5">
+                                    <label>Reference ID</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].refenceID" />
+                                </div>
+                                <div class="col-md-5">
+                                    <label>Consignment Date</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].consignmentdate" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label>pieces</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].pieces" />
+                                </div>
+                                <div class=" col-md-5">
+                                    <label>weight</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].weight" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label>
+                                        Consignee Company
+                                    </label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].consignmentcompany" />
+                                </div>
+                                <div class="col-md-5">
+                                    <label>Consignee Name</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].consigneeName" />
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <label>Address</label>
+                                <input type="text" class="form-control" ng-model="vm.inbound2[0].consigneeAddress1" />
+                            </div>
+                            <div class="col-md-3">
+                                <label>State</label>
+                                <input type="text" class="form-control" ng-model="vm.inbound2[0].state" />
+                            </div>
+                            <div class="col-lg-7">
+                                <label>Address</label>
+                                <input type="text"  class="form-control" ng-model="vm.inbound2[0].consigneeAddress2" />
+                            </div>
+                            <div class="row">
+                                <div class=" col-md-3">
+                                    <label>Town</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].town" />
+                                </div>
+                                <div class="col-lg-7">
+                                    <label>Address</label>
+                                    <input class="form-control" type="text" ng-model="vm.inbound2[0].consigneeAddress3" />
+
+                                </div>
+
+
+
+                                <div class="col-md-3">
+                                    <label>Postcode</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].postcode"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>
+                                        Shipment Type
+                                    </label>
+                                    <select class="form-control">
+                                        <option>D</option>
+                                        <option>P</option>
+                                    </select>
+                                </div>
+
+                                <div class=" col-md-5">
+                                    <label>PickUP Type</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].pickuptype" />
+                                </div>
+                                <div class="col-md-5">
+                                    <label>COD Payment</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].coDpayment" />
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <label>Remarks</label>
+                                <input class="form-control" type="text"  ng-model="vm.inbound2[0].remark"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>
+                                        width
+                                    </label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].width" />
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label>
+                                        Height
+                                    </label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].height" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Length</label>
+                                    <input type="text" class="form-control" ng-model="vm.inbound2[0].length" />
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <label>Product Description</label>
+                                <input class="form-control" type="text" ng-model="vm.inbound2[0].productdescription" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button ng-click="vm.update(vm)">SUBMIT</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+                                
+```
+
+
+
+
+
+
+
+
+
