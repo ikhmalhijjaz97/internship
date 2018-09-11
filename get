@@ -1,0 +1,33 @@
+```
+    <div ng-app="app" ng-controller="app.views.newauthors.author as vm">
+    <div>
+        <label>PLease Enter your CN number</label>
+        <input class="form-control" />
+        <button class="btn btn-primary">Submit</button>
+    </div>
+
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"> CN</th>
+                            <th scope="col"> status</th>
+                            <th scope="col"> delivery</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+            </div>
+```
