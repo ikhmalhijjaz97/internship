@@ -1,0 +1,95 @@
+```
+(function () {
+    var controllerId = 'app.views.GETPUSH.getpus';
+    angular.module('app').controller(controllerId, [
+        '$scope', 'abp.services.app.shipmentStatus','abp.services.app.inboundApi',
+        function ($scope, getpushService, inboundService) {
+            
+            var vm = this;
+            vm.status = [];
+            vm.status2 = [];
+            vm.bound = [];
+            vm.bound2 = [];
+            debugger
+
+           // join 2table 
+
+
+            vm.status = function (datastatus) {
+                abp.ui.setBusy();
+                $('#status').modal('show');
+                inboundService.listAll().then(function (result1) {
+                    vm.bound = result1.data;
+                });
+                getpushService.listAll().then(
+                    function (result) {
+                        vm.status = result.data;
+                        for (var i = 0, j = 0; i < vm.status.length; i++) {
+                            if (vm.status[i].cn == datastatus && vm.bound.cn == datastatus) {
+                                vm.status2[j] = vm.status[i];
+                                vm.bound2[j] = vm.bound[i].sendingagentNum;
+                                j++;
+                            }
+                        }
+                        abp.ui.clearBusy();
+                    });
+               
+            }
+
+
+        }
+    ]);
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div ng-app="app" ng-controller="app.views.GETPUSH.getpus as vm">
+    <div>
+        <label>PLease Enter your CN number</label>
+        <input class="form-control" ng-model="insert" />
+        <button class="btn btn-primary" ng-click="vm.status(insert)">Submit</button>
+    </div>
+
+    <div class="modal fade" id="status" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>latest Status</h5>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">GDex CN</th>
+                                <th scope="col">Customer Order Number</th>
+                                <th scope="col">Status Code</th>
+                                <th scope="col">Date and time</th>
+                                <th scope="col">Reason Code</th>
+
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="status1 in vm.status2">
+                            <tr>
+                                <td>{{status1.cn}}</td>
+                                <td>{{bound2[0].sendingagentNum}}</td>
+                                <td>{{status1.deL_status}}</td>
+                                <td>{{status1.deL_status}}</td>
+                                <td>{{status1.deL_ProbCode}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
