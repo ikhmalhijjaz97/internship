@@ -1,4 +1,4 @@
-```
+``` javascript
 <div ng-app="app" ng-controller="app.views.INBOUNDAPI.inbound as vm">
 <div class="jumbotron">
     <label>scan bar code</label>
