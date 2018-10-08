@@ -1,10 +1,82 @@
 ``` javascript
 <div ng-app="app" ng-controller="app.views.INBOUNDAPI.inbound as vm">
 <div class="jumbotron">
-    <label>scan bar code</label>
-    <p>latest bla2</p>
-    <button>show data</button>
+<h2>Hub mother bag inbound scan</h2>
 
+  <div>
+   <form>
+    <label>origin from</label>
+    <input type="text">
+    <label>Bag Quality</label>
+    <div class="checkbox">
+      <label><input type="checkbox" value="">Good</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" value="">Bad</label>
+    </div>
+    <label>lorry Plate Number</label>
+    <input type="text">    
+  </form>
+  </div>
+  <div>
+  <h2>Scan Barcode:</h2>
+  <p>weight</p>
+  <p></p>
+  <label>current weight</label>
+  <p></p>
+  <textarea>
+  
+  </div>
+<div>
+<h2>Last Capture</h2>
+
+</div>
+    
+    <button>show data</button>
+    
+    
+    
+<div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+     
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 </div>
 
 </div>
