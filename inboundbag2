@@ -1,0 +1,177 @@
+(function (){
+ var controllerId='app.views.InboundBags.InboundBag';
+angular.module('app').controller(controllerId,
+['$scope','abp.services.app.ORIGIN',
+function($scope, OriginService){
+debugger
+    vm.this = this;
+    vm.open = function () {
+        $('#table').modal('show');
+    }
+
+OriginService.
+
+}
+]);
+
+
+
+
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###hjhsadjhsajhsajkhd
+
+
+<div ng-app="app" ng-controller="app.views.InboundBags.InboundBag as vm">
+    <d iv class="jumbotron">
+        <h2 id="title">Hub mother bag inbound scan</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <form>
+                    <label>inbound date:</label><br />
+                    <label>origin from</label>
+                    <input type="text"><br />
+                    <label>Bag Quality</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            Good
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">
+                            Bad
+                        </label>
+                    </div><br />
+                    <label>lorry Plate Number</label>
+                    <input type="text">
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div class="row">  <h4 id="barcode">Scan Barcode:</h4></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>weight:</p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label id="try">current weight</label>
+                    </div>
+                </div>
+                <div style="width:50px;height:30px;border:1px solid #000;"></div>
+                <p></p>
+
+                <p></p>
+                <textarea cols="20" rows="3"></textarea>
+
+
+            </div>
+        </div>
+        <div>
+            <h2>Last Capture</h2>
+        </div>
+        <div id="bottom">
+            <button>Adjust</button>
+            <label>total bag</label>
+            <textarea cols="10" rows="2">num</textarea>
+        </div>
+        <button ng-click="vm.open()">show data</button>
+
+
+
+        <div>
+            <!-- Modal -->
+            <div class="modal fade" id="table" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">Origin</th>
+                                        <th scope="col">Bag ID</th>
+                                        <th scope="col">Bag Quality</th>
+                                        <th scope="col">Bag Weight</th>
+                                        <th scope="col">ID1</th>
+                                        <th scope="col">ID2</th>
+                                        <th scope="col">Lorry Plate</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td >No</td>
+                                        <td>Date</td>
+                                        <td>Time</td>
+                                        <td>Origin</td>
+                                        <td >Bag ID</td>
+                                        <td>Bag Quality</td>
+                                        <td >Bag Weight</td>
+                                        <td>ID1</td>
+                                        <td>ID2</td>
+                                        <td>Lorry Plate</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<style>
+    #bottom {
+        bottom: 30px;
+        right: 10px;
+        position: absolute;
+    
+}
+#try {
+    float:right;
+    top: 10px;
+}
+#title {
+    position:center;
+    text-align:center;
+    padding-bottom: 20px;
+
+}
+
+#kanan   {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+        font-size: 18px;
+        font-size:small;
+    }
+#barcode{
+    text-align:center;
+}
+</style>
