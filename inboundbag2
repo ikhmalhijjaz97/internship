@@ -1,51 +1,21 @@
-(function (){
- var controllerId='app.views.InboundBags.InboundBag';
-angular.module('app').controller(controllerId,
-['$scope','abp.services.app.ORIGIN',
-function($scope, OriginService){
-debugger
-    vm.this = this;
-    vm.open = function () {
-        $('#table').modal('show');
-    }
-
-OriginService.
-
-}
-]);
-
-
-
-
-})();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-###hjhsadjhsajhsajkhd
-
-
 <div ng-app="app" ng-controller="app.views.InboundBags.InboundBag as vm">
-    <d iv class="jumbotron">
+    <div class="jumbotron" id="back">
         <h2 id="title">Hub mother bag inbound scan</h2>
         <div class="row">
             <div class="col-md-6">
                 <form>
                     <label>inbound date:</label><br />
-                    <label>origin from</label>
-                    <input type="text"><br />
+                    <div class="input-group mb-3">
+                        <label>origin from</label>
+                        <select class="custom-select" id="inputGroupSelect01" ng-model="">
+                            <option selected>Choose...</option>
+                            <option ng-repeat="state in vm.state">{{state.stnno}}</option>
+
+                        </select>
+                    </div>
                     <label>Bag Quality</label>
                     <div class="form-check">
+
                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
                         <label class="form-check-label" for="exampleRadios1">
                             Good
@@ -72,7 +42,7 @@ OriginService.
                         <label id="try">current weight</label>
                     </div>
                 </div>
-                <div style="width:50px;height:30px;border:1px solid #000;"></div>
+                <div id="blackbox" style="width:100px;height:40px;border:1px solid #000; background-color:black;"></div>
                 <p></p>
 
                 <p></p>
@@ -83,72 +53,75 @@ OriginService.
         </div>
         <div>
             <h2>Last Capture</h2>
+            <button ng-click="vm.open()">Histroy</button>
         </div>
         <div id="bottom">
             <button>Adjust</button>
             <label>total bag</label>
             <textarea cols="10" rows="2">num</textarea>
         </div>
-        <button ng-click="vm.open()">show data</button>
+    </div>
 
+    <!-- Modal -->
+    <div class="modal fade bd-example-modal-lg" id="table" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                               
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Origin</th>
+                                <th scope="col">Bag ID</th>
+                                <th scope="col">Bag Quality</th>
+                                <th scope="col">Bag Weight</th>
+                                <th scope="col">ID1</th>
+                                <th scope="col">Lorry Plate</th>
 
-
-        <div>
-            <!-- Modal -->
-            <div class="modal fade" id="table" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Time</th>
-                                        <th scope="col">Origin</th>
-                                        <th scope="col">Bag ID</th>
-                                        <th scope="col">Bag Quality</th>
-                                        <th scope="col">Bag Weight</th>
-                                        <th scope="col">ID1</th>
-                                        <th scope="col">ID2</th>
-                                        <th scope="col">Lorry Plate</th>
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td >No</td>
-                                        <td>Date</td>
-                                        <td>Time</td>
-                                        <td>Origin</td>
-                                        <td >Bag ID</td>
-                                        <td>Bag Quality</td>
-                                        <td >Bag Weight</td>
-                                        <td>ID1</td>
-                                        <td>ID2</td>
-                                        <td>Lorry Plate</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="table in vm.table">
+                                <td>{{table.cManifestNo}}</td>
+                                <td>{{table.dtCreated}}</td>
+                                <td>{{table.cOrigin}}</td>
+                                <td>{{table.cManifestNo}}</td>
+                                <td>{{table.cPackCondition}}</td>
+                                <td>{{table.cAWB}}</td>
+                                <td>{{table.cUserId}}</td>
+                                <td>{{table.cVehicleNo}}</td>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
+
+
+</div>
 <style>
+    #blackbox{
+        position:center;
+    }
+    #back {
+        background-color:white;
+    }
     #bottom {
-        bottom: 30px;
+        bottom: 100px;
         right: 10px;
         position: absolute;
     
@@ -175,3 +148,74 @@ OriginService.
     text-align:center;
 }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+(function (){
+ var controllerId='app.views.InboundBags.InboundBag';
+angular.module('app').controller(controllerId,
+['$scope','abp.services.app.oRIGIN1','abp.services.app.manifestDoc',
+function($scope, OriginService,maniService){
+debugger
+    var vm = this;
+    vm.state = [];
+    vm.table = [];
+
+    vm.open = function () {
+        $('#table').modal('show');
+        maniService.listAll().then(function (result) {
+            vm.table = result.data;
+        });
+    }
+OriginService.listAll().then(function (result){
+vm.state = result.data;
+});
+
+}
+]);
+
+
+
+
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  public async Task create(GetManiInput input)
+        {
+            ManifestDoc output = Mapper.Map<GetManiInput, ManifestDoc>(input); //also create reverse mapper in LibraryAppApplicationModule PreInitialize
+            await _ManiManager.Create(output);
+        }
+
+
