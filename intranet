@@ -1,0 +1,68 @@
+<div>
+    <div class="row">
+        <h3>Branch Consignment Note Requisition</h3>
+    </div>
+    <div>
+        <form>
+            <div class="row">
+                <div class="col-lg-5">
+                    <label>Branch:</label>
+                    <select class="form-control">
+                        <option></option>
+                    </select> <br />
+
+                    <label>CN type:</label>
+                    <select class="form-control">
+                        <option></option>
+                    </select> <br />
+
+                    <label>Sub CN type:</label>
+                    <select class="form-control">
+                        <option></option>
+                    </select> <br />
+
+                    <label>Account:</label>
+                    <select class="form-control">
+                        <option></option>
+                    </select> <br />
+
+                </div>
+                <div class="col-lg-7">
+                    <label>Quantity:</label>
+                    <input class="form-control"/> <br />
+                    <label>Remarks</label>
+                    <textarea ></textarea>
+                    <button class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+                </div>
+            </div>
+        </form>
+        <div class="row" hidden="true">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>NO.</th>
+                        <th></th>
+                        <th>CN Type</th>
+                        <th>Sub CN Type</th>
+                        <th>Quantity</th>
+                        <th>Account No.</th>
+                        <th>Remarks</th>
+                        <th>Branch</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td><span class="glyphicon glyphicon-trash"></span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
