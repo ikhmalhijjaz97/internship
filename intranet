@@ -1,4 +1,277 @@
-<div>
+(function () {
+    var controllerId = 'app.views.InboundBags.InboundBag';
+    angular.module('app').controller(controllerId,
+        ['$scope', 'abp.services.app.pARAMETERS', 'abp.services.app.manifestDoc',
+            function ($scope, paraService, maniService) {
+                debugger
+                var vm = this;
+               $('#table2').hide;
+                var insert = {
+                    NO: '',
+                    subcn: '',
+                    dropcode: '',
+                    caccountno: '',
+                    quantity: '',
+                    remark: ''
+
+                }
+                var insert1 = {
+                    NO: '',
+                    subcn: '',
+                    dropcode: '',
+                    caccountno: '',
+                    quantity: '',
+                    remark: ''
+
+                }
+                var insert2 = {
+                    NO: '',
+                    subcn: '',
+                    dropcode: '',
+                    caccountno: '',
+                    quantity: '',
+                    remark: ''
+
+                }
+                var insert3 = {
+                    NO: '',
+                    subcn: '',
+                    dropcode: '',
+                    caccountno: '',
+                    quantity: '',
+                    remark: ''
+
+                }
+                var insert4 = {
+                    NO: '',
+                    subcn: '',
+                    dropcode: '',
+                    caccountno: '',
+                    quantity: '',
+                    remark: ''
+
+                }
+                var insert5 = {
+                    NO: '',
+                    subcn: '',
+                    dropcode: '',
+                    caccountno: '',
+                    quantity: '',
+                    remark: ''
+
+                }
+               var insert6 = {
+                    NO: '',
+                    subcn: '',
+                    dropcode: '',
+                    caccountno: '',
+                    quantity: '',
+                    remark: ''
+
+                }
+                var insert7 = {
+                    NO: '',
+                    subcn: '',
+                    dropcode: '',
+                    caccountno: '',
+                    quantity: '',
+                    remark: ''
+
+                }
+                var insert8 = {
+                    NO: '',
+                    subcn: '',
+                    dropcode: '',
+                    caccountno: '',
+                    quantity: '',
+                    remark: ''
+
+                }
+                var insert9 = {
+                    NO: '',
+                    subcn: '',
+                    dropcode: '',
+                    caccountno: '',
+                    quantity: '',
+                    remark: ''
+
+                }
+                vm.insert3 = [];
+                vm.bol = false;
+                vm.getcn = [];
+                vm.getsubcn = [];
+                vm.account = [];
+                vm.appear = [];
+                //var data2 = [];
+                var data2 = "";
+                var count = 0;
+                vm.getsubcnfor = '';
+                vm.getcnfor = '';
+              
+                //refresh();
+                paraService.getCN1().then(function (result) {
+                    vm.getcn = result.data;
+                });
+
+                //document.getElementById("cntype1").addEventListener('change', function () {
+                //    //for (var i = 0; i < vm.getcn.length; i++) {
+                //    //    if (vm.getcn[i].desc === vm.insert.desc) {
+                //    //        vm.getcnfor = vm.getcn[i].dropcode;
+                //    //    }
+                //    //}
+                //    
+                //   
+                //});
+                vm.changeinval(data){
+
+                }
+                vm.change = function (data) {
+                    paraService.getsubCN(data).then(function (result) {
+                        vm.getsubcn = result.data;
+                    });
+                }
+
+
+                vm.changesub = function (data) {
+                    if (vm.insert.getsubcn !== "") {
+                        paraService.gataccount(vm.insert.dropcode, data).then(function (result) {
+                            vm.account = result.data;
+                        });
+                    }
+                }
+
+
+                 
+                vm.add = function (data) {
+                    if (count === 0) {
+                        insert.NO = count;
+                        insert.dropcode = data.insert.dropcode;
+                        insert.subcn = data.insert.subcn;
+                        insert.caccountno = data.insert.caccountno;
+                        insert.quantity = data.insert.quantity;
+                        insert.remark = data.insert.remark;
+
+                        vm.appear.unshift(insert);
+                    }
+                   else if (count === 1) {
+                        insert1.NO = count;
+                        insert1.dropcode = data.insert.dropcode;
+                        insert1.subcn = data.insert.subcn;
+                        insert1.caccountno = data.insert.caccountno;
+                        insert1.quantity = data.insert.quantity;
+                        insert1.remark = data.insert.remark;
+
+                        vm.appear.unshift(insert1);
+                    }
+                   else if (count === 2) {
+                        insert2.NO = count;
+                        insert2.dropcode = data.insert.dropcode;
+                        insert2.subcn = data.insert.subcn;
+                        insert2.caccountno = data.insert.caccountno;
+                        insert2.quantity = data.insert.quantity;
+                        insert2.remark = data.insert.remark;
+
+                        vm.appear.unshift(insert2);
+                    }
+                   else if (count === 3) {
+                        insert3.NO = count;
+                        insert3.dropcode = data.insert.dropcode;
+                        insert3.subcn = data.insert.subcn;
+                        insert3.caccountno = data.insert.caccountno;
+                        insert3.quantity = data.insert.quantity;
+                        insert3.remark = data.insert.remark;
+
+                        vm.appear.unshift(insert3);
+                    }
+                   else if (count === 4) {
+                        insert4.NO = count;
+                        insert4.dropcode = data.insert.dropcode;
+                        insert4.subcn = data.insert.subcn;
+                        insert4.caccountno = data.insert.caccountno;
+                        insert4.quantity = data.insert.quantity;
+                        insert4.remark = data.insert.remark;
+
+                        vm.appear.unshift(insert4);
+                    }
+                   else if (count === 5) {
+                        insert5.NO = count;
+                        insert5.dropcode = data.insert.dropcode;
+                        insert5.subcn = data.insert.subcn;
+                        insert5.caccountno = data.insert.caccountno;
+                        insert5.quantity = data.insert.quantity;
+                        insert5.remark = data.insert.remark;
+
+                        vm.appear.unshift(insert5);
+                    }
+                   else if (count === 6) {
+                        insert6.NO = count;
+                        insert6.dropcode = data.insert.dropcode;
+                        insert6.subcn = data.insert.subcn;
+                        insert6.caccountno = data.insert.caccountno;
+                        insert6.quantity = data.insert.quantity;
+                        insert6.remark = data.insert.remark;
+
+                        vm.appear.unshift(insert6);
+                    }
+                   else if (count === 7) {
+                       insert7.NO = count;
+                        insert7.dropcode = data.insert.dropcode;
+                        insert7.subcn = data.insert.subcn;
+                        insert7.caccountno = data.insert.caccountno;
+                        insert7.quantity = data.insert.quantity;
+                        insert7.remark = data.insert.remark;
+
+                        vm.appear.unshift(insert7);
+                    }
+                    else if (count === 8) {
+                        insert8.NO = count;
+                        insert8.dropcode = data.insert.dropcode;
+                        insert8.subcn = data.insert.subcn;
+                        insert8.caccountno = data.insert.caccountno;
+                        insert8.quantity = data.insert.quantity;
+                        insert8.remark = data.insert.remark;
+
+                        vm.appear.unshift(insert8);
+                    }
+                    else {
+                        insert9.NO = count;
+                        insert9.dropcode = data.insert.dropcode;
+                        insert9.subcn = data.insert.subcn;
+                        insert9.caccountno = data.insert.caccountno;
+                        insert9.quantity = data.insert.quantity;
+                        insert9.remark = data.insert.remark;
+
+                        vm.appear.unshift(insert9);
+                    }
+                    if (count > 9) {
+                        sweetAlert("warning","u have inserted more than 10","");
+                    }
+                    $('#table2').show;
+                    count++;                    
+                    return;           
+                    // document.getElementById("table2").style.removeProperty('display');
+                }
+
+                //function refresh() {
+                //    vm.insert.NO = '';
+                //    vm.insert.subcn = '';
+                //    vm.insert.dropcode = '';
+                //    vm.insert.caccountno = '';
+                //    vm.insert.quantity = '';
+                //    vm.insert.remark = '';
+                //}
+            }
+]);
+
+
+})();
+
+
+  
+  
+  
+  
+  <div ng-app="app" ng-controller="app.views.InboundBags.InboundBag as vm">
     <div class="row">
         <h3>Branch Consignment Note Requisition</h3>
     </div>
@@ -12,31 +285,31 @@
                     </select> <br />
 
                     <label>CN type:</label>
-                    <select class="form-control">
-                        <option></option>
+                    <select id="cntype1" ng-model="vm.insert.dropcode" class="form-control" ng-change="vm.change(vm.insert.dropcode)">
+                        <option value="{{cntype.dropcode}}" ng-repeat="cntype in vm.getcn">{{cntype.dropcode}}-{{cntype.desc}}</option>
                     </select> <br />
 
                     <label>Sub CN type:</label>
-                    <select class="form-control">
-                        <option></option>
+                    <select ng-model="vm.insert.subcn" class="form-control" ng-change="vm.changesub(vm.insert.subcn)">
+                        <option value="{{cnsub.dropcode}}" ng-repeat="cnsub in vm.getsubcn">{{cnsub.dropcode}}-{{cnsub.desc}}</option>
                     </select> <br />
 
                     <label>Account:</label>
-                    <select class="form-control">
-                        <option></option>
+                    <select class="form-control" ng-model="vm.insert.caccountno">
+                        <option value="{{account.caccountno}}" ng-repeat="account in vm.account">{{account.ccompanyname}}</option>
                     </select> <br />
 
                 </div>
                 <div class="col-lg-7">
                     <label>Quantity:</label>
-                    <input class="form-control"/> <br />
+                    <input class="form-control" ng-model="vm.insert.quantity" ng-change="vm.changeinval(vm.insert.quantity)" /> <br />
                     <label>Remarks</label>
-                    <textarea ></textarea>
-                    <button class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+                    <textarea ng-model="vm.insert.remark"></textarea>
+                    <button class="btn btn-primary" ng-click="vm.add(vm)"><span class="glyphicon glyphicon-plus"></span></button>
                 </div>
             </div>
         </form>
-        <div class="row" hidden="true">
+        <div id="table2">
             <table class="table">
                 <thead>
                     <tr>
@@ -50,16 +323,26 @@
                         <th>Branch</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody ng-repeat="datainsert in vm.appear">
+                    @*<tr>
+            <td>{{datainsert.NO}}</td>
+            <td><span class="glyphicon glyphicon-trash"></span></td>
+            <td>{{datainsert.dropcode}}</td>
+            <td>{{datainsert.subcn}}</td>
+            <td>{{datainsert.quantity}}</td>
+            <td>{{datainsert.caccountno}}</td>
+            <td>{{datainsert.remark}}</td>
+            <td>KIUA</td>
+        </tr>*@
                     <tr>
-                        <td></td>
+                        <td>{{datainsert.NO}}</td>
                         <td><span class="glyphicon glyphicon-trash"></span></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{datainsert.dropcode}}</td>
+                        <td>{{datainsert.subcn}}</td>
+                        <td>{{datainsert.quantity}}</td>
+                        <td>{{datainsert.caccountno}}</td>
+                        <td>{{datainsert.remark}}</td>
+                        <td>KIUA</td>
                     </tr>
                 </tbody>
             </table>
