@@ -1,256 +1,299 @@
+
+
 (function () {
-    var controllerId = 'app.views.InboundBags.InboundBag';
-    angular.module('app').controller(controllerId,
-        ['$scope', 'abp.services.app.pARAMETERS', 'abp.services.app.manifestDoc',
-            function ($scope, paraService, maniService) {
-                debugger
-                var vm = this;
-               $('#table2').hide;
-                var insert = {
-                    NO: '',
-                    subcn: '',
-                    dropcode: '',
-                    caccountno: '',
-                    quantity: '',
-                    remark: ''
+    "use strict"
+    var app = angular.module("app");
+    app.component("outboundreportList", {
+        templateUrl: "~/App/Main/views/outboundreport/outboundreport.cshtml",
+        controllerAs: "vm",
+        controller: ['abp.services.app.outbound','abp.services.app.pARAMETERS', '$rootScope', Controller]
+    });
 
-                }
-                var insert1 = {
-                    NO: '',
-                    subcn: '',
-                    dropcode: '',
-                    caccountno: '',
-                    quantity: '',
-                    remark: ''
+    function Controller(outboundService, paraService, $rootScope) {
+              debugger
+        var vm = this;
+        $('#table2').hide;
+        var check = [10];
+        var insert = {
+            NO: '',
+            subcn: '',
+            dropcode: '',
+            caccountno: '',
+            quantity: '',
+            remark: ''
 
-                }
-                var insert2 = {
-                    NO: '',
-                    subcn: '',
-                    dropcode: '',
-                    caccountno: '',
-                    quantity: '',
-                    remark: ''
+        }
+        var insert1 = {
+            NO: '',
+            subcn: '',
+            dropcode: '',
+            caccountno: '',
+            quantity: '',
+            remark: ''
 
-                }
-                var insert3 = {
-                    NO: '',
-                    subcn: '',
-                    dropcode: '',
-                    caccountno: '',
-                    quantity: '',
-                    remark: ''
+        }
+        var insert2 = {
+            NO: '',
+            subcn: '',
+            dropcode: '',
+            caccountno: '',
+            quantity: '',
+            remark: ''
 
-                }
-                var insert4 = {
-                    NO: '',
-                    subcn: '',
-                    dropcode: '',
-                    caccountno: '',
-                    quantity: '',
-                    remark: ''
+        }
+        var insert3 = {
+            NO: '',
+            subcn: '',
+            dropcode: '',
+            caccountno: '',
+            quantity: '',
+            remark: ''
 
-                }
-                var insert5 = {
-                    NO: '',
-                    subcn: '',
-                    dropcode: '',
-                    caccountno: '',
-                    quantity: '',
-                    remark: ''
+        }
+        var insert4 = {
+            NO: '',
+            subcn: '',
+            dropcode: '',
+            caccountno: '',
+            quantity: '',
+            remark: ''
 
-                }
-               var insert6 = {
-                    NO: '',
-                    subcn: '',
-                    dropcode: '',
-                    caccountno: '',
-                    quantity: '',
-                    remark: ''
+        }
+        var insert5 = {
+            NO: '',
+            subcn: '',
+            dropcode: '',
+            caccountno: '',
+            quantity: '',
+            remark: ''
 
-                }
-                var insert7 = {
-                    NO: '',
-                    subcn: '',
-                    dropcode: '',
-                    caccountno: '',
-                    quantity: '',
-                    remark: ''
+        }
+        var insert6 = {
+            NO: '',
+            subcn: '',
+            dropcode: '',
+            caccountno: '',
+            quantity: '',
+            remark: ''
 
-                }
-                var insert8 = {
-                    NO: '',
-                    subcn: '',
-                    dropcode: '',
-                    caccountno: '',
-                    quantity: '',
-                    remark: ''
+        }
+        var insert7 = {
+            NO: '',
+            subcn: '',
+            dropcode: '',
+            caccountno: '',
+            quantity: '',
+            remark: ''
 
-                }
-                var insert9 = {
-                    NO: '',
-                    subcn: '',
-                    dropcode: '',
-                    caccountno: '',
-                    quantity: '',
-                    remark: ''
+        }
+        var insert8 = {
+            NO: '',
+            subcn: '',
+            dropcode: '',
+            caccountno: '',
+            quantity: '',
+            remark: ''
 
+        }
+        var insert9 = {
+            NO: '',
+            subcn: '',
+            dropcode: '',
+            caccountno: '',
+            quantity: '',
+            remark: ''
+
+        }
+        vm.insert3 = [];
+        vm.bol = false;
+        vm.getcn = [];
+        vm.getsubcn = [];
+        vm.account = [];
+        vm.appear = [];
+        //var data2 = [];
+        var data2 = "";
+        var count = 0;
+        vm.getsubcnfor = '';
+        vm.getcnfor = '';
+
+        //refresh();
+        paraService.getCN1().then(function (result) {
+            vm.getcn = result.data;
+        });
+
+        //document.getElementById("cntype1").addEventListener('change', function () {
+        //    //for (var i = 0; i < vm.getcn.length; i++) {
+        //    //    if (vm.getcn[i].desc === vm.insert.desc) {
+        //    //        vm.getcnfor = vm.getcn[i].dropcode;
+        //    //    }
+        //    //}
+        //    
+        //   
+        //});
+        vm.changeinval = function (data) {
+            var quantity1 = document.getElementById('quantity');
+           
+            var changequantity = parseInt(quantity1.innerHTML);
+            if (data.insert.quantity < 30) {
+                if (data.insert.dropcode === "91" && (data.insert.subcn === "9913" && data.insert.subcn === "9914")) {
+                    document.getElementById('quanremark').innerHTML = "the quantity should be multiple of 50";
+                    document.getElementById('quanremark').style.color = "red";
+                } else {
+                    document.getElementById('quanremark').innerHTML = "the quantity should be more than 30";
+                    document.getElementById('quanremark').style.color = "red";
                 }
-                vm.insert3 = [];
-                vm.bol = false;
-                vm.getcn = [];
-                vm.getsubcn = [];
-                vm.account = [];
-                vm.appear = [];
-                //var data2 = [];
-                var data2 = "";
-                var count = 0;
-                vm.getsubcnfor = '';
-                vm.getcnfor = '';
-              
-                //refresh();
-                paraService.getCN1().then(function (result) {
-                    vm.getcn = result.data;
+
+            } else {
+                document.getElementById('quanremark').innerHTML = "";
+                document.getElementById('quanremark').style.color = "";
+            }
+        }       
+        vm.change = function (data) {
+            paraService.getsubCN(data).then(function (result) {
+                vm.getsubcn = result.data;
+            });
+        }
+
+
+        vm.changesub = function (data) {
+            if (vm.insert.getsubcn !== "") {
+                paraService.gataccount(vm.insert.dropcode, data).then(function (result) {
+                    vm.account = result.data;
                 });
+            }
+        }
 
-                //document.getElementById("cntype1").addEventListener('change', function () {
-                //    //for (var i = 0; i < vm.getcn.length; i++) {
-                //    //    if (vm.getcn[i].desc === vm.insert.desc) {
-                //    //        vm.getcnfor = vm.getcn[i].dropcode;
-                //    //    }
-                //    //}
-                //    
-                //   
-                //});
-                vm.changeinval(data){
+        // every time user click submit all array should reset
 
+        vm.add = function (data) {
+            check.push(data.insert.caccountno);
+            for (var i = 0; i < (check.length-1); i++) {
+                if (data.insert.caccountno === check[i]) {
+                    alert("the account number already exist");
+                    return;
                 }
-                vm.change = function (data) {
-                    paraService.getsubCN(data).then(function (result) {
-                        vm.getsubcn = result.data;
-                    });
+            }
+            if (count === 0) {
+                insert.NO = count;
+                insert.dropcode = data.insert.dropcode;
+                insert.subcn = data.insert.subcn;
+                insert.caccountno = data.insert.caccountno;
+                insert.quantity = data.insert.quantity;
+                insert.remark = data.insert.remark;
+
+                vm.appear.unshift(insert);
+            }
+            else if (count === 1) {
+                insert1.NO = count;
+                insert1.dropcode = data.insert.dropcode;
+                insert1.subcn = data.insert.subcn;
+                insert1.caccountno = data.insert.caccountno;
+                insert1.quantity = data.insert.quantity;
+                insert1.remark = data.insert.remark;
+
+                vm.appear.unshift(insert1);
+            }
+            else if (count === 2) {
+                insert2.NO = count;
+                insert2.dropcode = data.insert.dropcode;
+                insert2.subcn = data.insert.subcn;
+                insert2.caccountno = data.insert.caccountno;
+                insert2.quantity = data.insert.quantity;
+                insert2.remark = data.insert.remark;
+
+                vm.appear.unshift(insert2);
+            }
+            else if (count === 3) {
+                insert3.NO = count;
+                insert3.dropcode = data.insert.dropcode;
+                insert3.subcn = data.insert.subcn;
+                insert3.caccountno = data.insert.caccountno;
+                insert3.quantity = data.insert.quantity;
+                insert3.remark = data.insert.remark;
+
+                vm.appear.unshift(insert3);
+            }
+            else if (count === 4) {
+                insert4.NO = count;
+                insert4.dropcode = data.insert.dropcode;
+                insert4.subcn = data.insert.subcn;
+                insert4.caccountno = data.insert.caccountno;
+                insert4.quantity = data.insert.quantity;
+                insert4.remark = data.insert.remark;
+
+                vm.appear.unshift(insert4);
+            }
+            else if (count === 5) {
+                insert5.NO = count;
+                insert5.dropcode = data.insert.dropcode;
+                insert5.subcn = data.insert.subcn;
+                insert5.caccountno = data.insert.caccountno;
+                insert5.quantity = data.insert.quantity;
+                insert5.remark = data.insert.remark;
+
+                vm.appear.unshift(insert5);
+            }
+            else if (count === 6) {
+                insert6.NO = count;
+                insert6.dropcode = data.insert.dropcode;
+                insert6.subcn = data.insert.subcn;
+                insert6.caccountno = data.insert.caccountno;
+                insert6.quantity = data.insert.quantity;
+                insert6.remark = data.insert.remark;
+
+                vm.appear.unshift(insert6);
+            }
+            else if (count === 7) {
+                insert7.NO = count;
+                insert7.dropcode = data.insert.dropcode;
+                insert7.subcn = data.insert.subcn;
+                insert7.caccountno = data.insert.caccountno;
+                insert7.quantity = data.insert.quantity;
+                insert7.remark = data.insert.remark;
+
+                vm.appear.unshift(insert7);
+            }
+            else if (count === 8) {
+                insert8.NO = count;
+                insert8.dropcode = data.insert.dropcode;
+                insert8.subcn = data.insert.subcn;
+                insert8.caccountno = data.insert.caccountno;
+                insert8.quantity = data.insert.quantity;
+                insert8.remark = data.insert.remark;
+
+                vm.appear.unshift(insert8);
+            }
+            else {
+                insert9.NO = count;
+                insert9.dropcode = data.insert.dropcode;
+                insert9.subcn = data.insert.subcn;
+                insert9.caccountno = data.insert.caccountno;
+                insert9.quantity = data.insert.quantity;
+                insert9.remark = data.insert.remark;
+
+                vm.appear.unshift(insert9);
+            }
+            if (count > 9) {
+                sweetAlert("warning", "u have inserted more than 10", "");
+            }
+            $('#table2').show;
+            count++;
+            return;
+            // document.getElementById("table2").style.removeProperty('display');
+        }
+
+        vm.delete = function (data) {
+            for (var i = 0; i < vm.appear.length; i++) {
+                if (vm.appear[i].caccountno = data.insert.caccountno) {
+                    //
+                    for (var j = i; j < vm.appear.length; j++) {
+                        vm.appear[i].push(vm.appear[i + 1]);
+                    }
+                    vm.appear.pop();
                 }
-
-
-                vm.changesub = function (data) {
-                    if (vm.insert.getsubcn !== "") {
-                        paraService.gataccount(vm.insert.dropcode, data).then(function (result) {
-                            vm.account = result.data;
-                        });
-                    }
-                }
-
-
-                 
-                vm.add = function (data) {
-                    if (count === 0) {
-                        insert.NO = count;
-                        insert.dropcode = data.insert.dropcode;
-                        insert.subcn = data.insert.subcn;
-                        insert.caccountno = data.insert.caccountno;
-                        insert.quantity = data.insert.quantity;
-                        insert.remark = data.insert.remark;
-
-                        vm.appear.unshift(insert);
-                    }
-                   else if (count === 1) {
-                        insert1.NO = count;
-                        insert1.dropcode = data.insert.dropcode;
-                        insert1.subcn = data.insert.subcn;
-                        insert1.caccountno = data.insert.caccountno;
-                        insert1.quantity = data.insert.quantity;
-                        insert1.remark = data.insert.remark;
-
-                        vm.appear.unshift(insert1);
-                    }
-                   else if (count === 2) {
-                        insert2.NO = count;
-                        insert2.dropcode = data.insert.dropcode;
-                        insert2.subcn = data.insert.subcn;
-                        insert2.caccountno = data.insert.caccountno;
-                        insert2.quantity = data.insert.quantity;
-                        insert2.remark = data.insert.remark;
-
-                        vm.appear.unshift(insert2);
-                    }
-                   else if (count === 3) {
-                        insert3.NO = count;
-                        insert3.dropcode = data.insert.dropcode;
-                        insert3.subcn = data.insert.subcn;
-                        insert3.caccountno = data.insert.caccountno;
-                        insert3.quantity = data.insert.quantity;
-                        insert3.remark = data.insert.remark;
-
-                        vm.appear.unshift(insert3);
-                    }
-                   else if (count === 4) {
-                        insert4.NO = count;
-                        insert4.dropcode = data.insert.dropcode;
-                        insert4.subcn = data.insert.subcn;
-                        insert4.caccountno = data.insert.caccountno;
-                        insert4.quantity = data.insert.quantity;
-                        insert4.remark = data.insert.remark;
-
-                        vm.appear.unshift(insert4);
-                    }
-                   else if (count === 5) {
-                        insert5.NO = count;
-                        insert5.dropcode = data.insert.dropcode;
-                        insert5.subcn = data.insert.subcn;
-                        insert5.caccountno = data.insert.caccountno;
-                        insert5.quantity = data.insert.quantity;
-                        insert5.remark = data.insert.remark;
-
-                        vm.appear.unshift(insert5);
-                    }
-                   else if (count === 6) {
-                        insert6.NO = count;
-                        insert6.dropcode = data.insert.dropcode;
-                        insert6.subcn = data.insert.subcn;
-                        insert6.caccountno = data.insert.caccountno;
-                        insert6.quantity = data.insert.quantity;
-                        insert6.remark = data.insert.remark;
-
-                        vm.appear.unshift(insert6);
-                    }
-                   else if (count === 7) {
-                       insert7.NO = count;
-                        insert7.dropcode = data.insert.dropcode;
-                        insert7.subcn = data.insert.subcn;
-                        insert7.caccountno = data.insert.caccountno;
-                        insert7.quantity = data.insert.quantity;
-                        insert7.remark = data.insert.remark;
-
-                        vm.appear.unshift(insert7);
-                    }
-                    else if (count === 8) {
-                        insert8.NO = count;
-                        insert8.dropcode = data.insert.dropcode;
-                        insert8.subcn = data.insert.subcn;
-                        insert8.caccountno = data.insert.caccountno;
-                        insert8.quantity = data.insert.quantity;
-                        insert8.remark = data.insert.remark;
-
-                        vm.appear.unshift(insert8);
-                    }
-                    else {
-                        insert9.NO = count;
-                        insert9.dropcode = data.insert.dropcode;
-                        insert9.subcn = data.insert.subcn;
-                        insert9.caccountno = data.insert.caccountno;
-                        insert9.quantity = data.insert.quantity;
-                        insert9.remark = data.insert.remark;
-
-                        vm.appear.unshift(insert9);
-                    }
-                    if (count > 9) {
-                        sweetAlert("warning","u have inserted more than 10","");
-                    }
-                    $('#table2').show;
-                    count++;                    
-                    return;           
-                    // document.getElementById("table2").style.removeProperty('display');
-                }
+            }
+          
+        }
 
                 //function refresh() {
                 //    vm.insert.NO = '';
@@ -260,18 +303,17 @@
                 //    vm.insert.quantity = '';
                 //    vm.insert.remark = '';
                 //}
-            }
-]);
-
-
+    }
 })();
 
 
-  
-  
-  
-  
-  <div ng-app="app" ng-controller="app.views.InboundBags.InboundBag as vm">
+
+
+///
+
+
+
+<div>
     <div class="row">
         <h3>Branch Consignment Note Requisition</h3>
     </div>
@@ -302,7 +344,8 @@
                 </div>
                 <div class="col-lg-7">
                     <label>Quantity:</label>
-                    <input class="form-control" ng-model="vm.insert.quantity" ng-change="vm.changeinval(vm.insert.quantity)" /> <br />
+                    <input id="quantity" class="form-control" ng-model="vm.insert.quantity" ng-change="vm.changeinval(vm)" /> <br />
+                    <p id="quanremark"></p>
                     <label>Remarks</label>
                     <textarea ng-model="vm.insert.remark"></textarea>
                     <button class="btn btn-primary" ng-click="vm.add(vm)"><span class="glyphicon glyphicon-plus"></span></button>
@@ -325,18 +368,18 @@
                 </thead>
                 <tbody ng-repeat="datainsert in vm.appear">
                     @*<tr>
-            <td>{{datainsert.NO}}</td>
-            <td><span class="glyphicon glyphicon-trash"></span></td>
-            <td>{{datainsert.dropcode}}</td>
-            <td>{{datainsert.subcn}}</td>
-            <td>{{datainsert.quantity}}</td>
-            <td>{{datainsert.caccountno}}</td>
-            <td>{{datainsert.remark}}</td>
-            <td>KIUA</td>
-        </tr>*@
+                            <td>{{datainsert.NO}}</td>
+                            <td><span class="glyphicon glyphicon-trash"></span></td>
+                            <td>{{datainsert.dropcode}}</td>
+                            <td>{{datainsert.subcn}}</td>
+                            <td>{{datainsert.quantity}}</td>
+                            <td>{{datainsert.caccountno}}</td>
+                            <td>{{datainsert.remark}}</td>
+                            <td>KIUA</td>
+                        </tr>*@
                     <tr>
                         <td>{{datainsert.NO}}</td>
-                        <td><span class="glyphicon glyphicon-trash"></span></td>
+                        <td><a href="" ng-click="vm.delete(vm)"><span class="glyphicon glyphicon-trash"></span></a></td>
                         <td>{{datainsert.dropcode}}</td>
                         <td>{{datainsert.subcn}}</td>
                         <td>{{datainsert.quantity}}</td>
@@ -348,4 +391,182 @@
             </table>
         </div>
     </div>
+    <div class="modal fade" id="submission" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">           
+                <div class="modal-body">
+                    <h5>Confirm submition</h5>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>                
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+
+////
+
+
+using Abp.Application.Services;
+using Abp.Domain.Services;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SOTSCanvas.Models
+{
+    public class PARAMETERSManager : DomainService, IPARAMETERSManager
+    {
+        public IEnumerable<companyname> getAccount(string CNdata, string subCN)
+        {
+            SqlConnection con2 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Second"].ConnectionString);
+            con2.Open();
+            string account = "";
+            List<companyname> companylist = new List<companyname>();
+            account = "select A.caccountno,A.caccttype,A.csubaccttype,(A.caccountno + ' - ' +B.ccompanyname) ccompanyname from CRM.dbo.aacctdetails A (nolock) left join CRM.dbo.apickupdetails B (nolock) on A.caccountno = B.caccountNo left join CRM.dbo.acustomer C (nolock) on A.caccountno = C.caccountNo where A.caccttype = '" +CNdata+ "' and A.csubaccttype ='" +subCN+ "'  and B.cPickOriginCode ='KUA' and C.cStatus = '08' order by A.caccountno asc";
+            SqlCommand command = new SqlCommand(account, con2);
+            using (SqlDataReader dataread = command.ExecuteReader())
+            {
+                while (dataread.Read())
+                {
+                    companyname data = new companyname();
+                    data.ccompanyname = dataread["ccompanyname"].ToString();
+                    data.caccountno = dataread["caccountno"].ToString();
+                    companylist.Add(data);
+                }
+            }
+            con2.Close();
+            return companylist;
+
+
+        }
+
+        public IEnumerable<CN> getCNtype()
+        {
+            SqlConnection getCN = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Second"].ConnectionString);
+            getCN.Open();
+            List<CN> CNsend = new List<CN>();
+            string d = " ";
+            d = "select dropcode,[desc] from gdexpdb.oms.parameter where category = 'TypeAcct' and status = '1' and dropcode NOT in ('01','04')";
+            SqlCommand connect = new SqlCommand(d, getCN);
+            using (SqlDataReader read = connect.ExecuteReader())
+            {
+                while (read.Read())
+                {
+                    CN getcnread = new CN();
+                    getcnread.desc = read["desc"].ToString();
+                    getcnread.dropcode = read["dropcode"].ToString();
+                    CNsend.Add(getcnread);
+                }
+            }
+            getCN.Close();
+            return CNsend;
+        }
+
+        public string getreferenceNO(string chkcn)
+        {
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Second"].ConnectionString);
+            SqlConnection con1 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Second"].ConnectionString);
+            string oldrefno = "", reqtype = "", yr = ""; ;
+            string refno;
+            try
+            {
+                con.Open();
+            }
+            catch
+            {
+                con.Close();
+                con.Open();
+            }
+            SqlCommand cmd = new SqlCommand("Select cCtry,cReqType,cYear,nStart,nMax,cRemark from [CNAS].[cnas].[Refno] with (nolock) " +
+                                "where cYear = right(YEAR(GETDATE()),4) and cReqType = '" + chkcn + "'", con);
+           SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                oldrefno = dr["nStart"].ToString().Trim();
+                reqtype = dr["cReqType"].ToString().Trim();
+                yr = dr["cYear"].ToString().Trim();
+            }
+            else
+            {
+                string query = "";
+                //con.Close();
+                con1.Open();
+                query = "INSERT INTO [CNAS].[cnas].[Refno] (cCtry,cReqType,cYear,nStart,nMax,cRemark) VALUES ('MY'," + chkcn + "', right(YEAR(GETDATE()),4) ,0,'999999999','')";
+                cmd = new SqlCommand(query, con1);
+                cmd.ExecuteNonQuery();
+                con1.Close();
+
+                oldrefno = "0";
+                reqtype = chkcn;
+                yr = DateTime.Now.Year.ToString();
+            }
+            dr.Close();
+            con.Close();
+
+           string alphabet1 = Convert.ToString(DateTime.Now.Year.ToString());
+
+          int  num1 = Convert.ToInt32(oldrefno) + 1;
+
+            if (chkcn == "F")
+            {
+               refno = "SS" + reqtype + Convert.ToString(alphabet1) + "/" + num1.ToString().PadLeft(6, '0');
+            }
+            else
+            {
+               refno = "SS" + reqtype + Convert.ToString(alphabet1) + "/" + num1.ToString().PadLeft(9, '0');
+            }
+            con.Open();
+            string query2 = "";
+            query2 = "UPDATE [CNAS].[cnas].[Refno] SET nStart = " + num1 + " WHERE cYear = '" + yr + "' and cReqType = '" + chkcn + "' ";
+
+            cmd = new SqlCommand(query2, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            return refno;
+        }
+
+        public IEnumerable<CN> getSubCNtype(string input)
+        {
+            SqlConnection getsub = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Second"].ConnectionString);
+            getsub.Open();
+            List<CN> subdata = new List<CN>();
+            string con = " ";
+            con = "select dropcode,[desc] from gdexpdb.oms.parameter where category = '"+ input + "' and status = '1' and dropcode <> '0206'";
+            SqlCommand command = new SqlCommand(con, getsub);
+            using (SqlDataReader read1 = command.ExecuteReader())
+            {
+                while (read1.Read())
+                {
+                    CN dataforsub = new CN();
+                    dataforsub.desc = read1["desc"].ToString();
+                    dataforsub.dropcode = read1["dropcode"].ToString();
+                    subdata.Add(dataforsub);
+
+                }
+            }
+            getsub.Close();
+            return subdata;
+        }
+    }
+}
+
+
+  string getreferenceNO(string chkcn);
+  
+  
+    string getrefer(string input);
+    
+    
+    
+    
+        public string getrefer(string input)
+        {
+            return _paraManager.getreferenceNO(input);
+        }
