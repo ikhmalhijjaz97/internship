@@ -40,10 +40,10 @@
             </div>
         </form>
         <div>
-            <table  id="table2" class="table">
+            <table id="table2" class="table">
                 <thead>
                     <tr>
-                        <th>NO.</th>
+                        @*<th>NO.</th>*@
                         <th></th>
                         <th>CN Type</th>
                         <th>Sub CN Type</th>
@@ -55,17 +55,17 @@
                 </thead>
                 <tbody ng-repeat="datainsert in vm.appear">
                     @*<tr>
-            <td>{{datainsert.NO}}</td>
-            <td><span class="glyphicon glyphicon-trash"></span></td>
-            <td>{{datainsert.dropcode}}</td>
-            <td>{{datainsert.subcn}}</td>
-            <td>{{datainsert.quantity}}</td>
-            <td>{{datainsert.caccountno}}</td>
-            <td>{{datainsert.remark}}</td>
-            <td>KIUA</td>
-        </tr>*@
+                <td>{{datainsert.NO}}</td>
+                <td><span class="glyphicon glyphicon-trash"></span></td>
+                <td>{{datainsert.dropcode}}</td>
+                <td>{{datainsert.subcn}}</td>
+                <td>{{datainsert.quantity}}</td>
+                <td>{{datainsert.caccountno}}</td>
+                <td>{{datainsert.remark}}</td>
+                <td>KIUA</td>
+            </tr>*@
                     <tr>
-                        <td>{{datainsert.NO}}</td>
+                        @*<td>{{datainsert.NO}}</td>*@
                         <td><a href="" ng-click="vm.delete(datainsert.caccountno)"><span class="glyphicon glyphicon-trash"></span></a></td>
                         <td>{{datainsert.dropcode}}</td>
                         <td>{{datainsert.subcn}}</td>
