@@ -1,0 +1,107 @@
+﻿<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div ng-app="app" ng-controller="app.views.InboundBags.InboundBag as vm">
+    <div>
+        <div class="row">
+            <h3>Branch Consignment Note Requisition</h3>
+        </div>
+        <div>
+            <form>
+                <div class="row">
+                    <div class="col-lg-5">
+                        <label>Branch:</label>
+                        <select class="form-control" ng-model="vm.insert.branch">
+                            <option value="{{branch.origin_desc}}" ng-repeat="branch in vm.branch">{{branch.origin_desc}}</option>
+                        </select> <br />
+
+                        <label>CN type:</label>
+                        <select id="cntype1" ng-model="vm.insert.dropcode" class="form-control" ng-change="vm.change(vm.insert.dropcode)">
+                            <option value="{{cntype.dropcode}}" ng-repeat="cntype in vm.getcn">{{cntype.desc}}</option>
+                        </select> <br />
+
+                        <label>Sub CN type:</label>
+                        <select ng-model="vm.insert.subcn" class="form-control" ng-change="vm.changesub(vm.insert.subcn)">
+                            <option value="{{cnsub.dropcode}}" ng-repeat="cnsub in vm.getsubcn">{{cnsub.desc}}</option>
+                        </select> <br />
+
+                        <label>Account:</label>
+                        <select class="form-control" ng-model="vm.insert.caccountno">
+                            <option value="{{account.caccountno}}" ng-repeat="account in vm.account">{{account.ccompanyname}}</option>
+                        </select> <br />
+
+                    </div>
+                    <div class="col-lg-7">
+                        <label>Quantity:</label>
+                        <input id="quantity" class="form-control" ng-model="vm.insert.quantity" ng-change="vm.changeinval(vm.insert.quantity,vm.insert.subcn)" /> <br />
+                        <p id="quanremark"></p><p id="char"></p>
+                        <label>Remarks</label>
+                        <textarea ng-model="vm.insert.remark" maxlength="100"></textarea>
+                        <button id="addbutton" class="btn btn-primary" ng-click="vm.add(vm)"><span class="glyphicon glyphicon-plus"></span></button>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <table id="table2" class="table">
+                    <thead>
+                        <tr>
+                            @*<th>NO.</th>*@
+                            <th></th>
+                            <th>CN Type</th>
+                            <th>Sub CN Type</th>
+                            <th>Quantity</th>
+                            <th>Account No.</th>
+                            <th>Remarks</th>
+                            <th>Branch</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="datainsert in vm.appear">
+                        @*<tr>
+                            <td>{{datainsert.NO}}</td>
+                            <td><span class="glyphicon glyphicon-trash"></span></td>
+                            <td>{{datainsert.dropcode}}</td>
+                            <td>{{datainsert.subcn}}</td>
+                            <td>{{datainsert.quantity}}</td>
+                            <td>{{datainsert.caccountno}}</td>
+                            <td>{{datainsert.remark}}</td>
+                            <td>KIUA</td>
+                        </tr>*@
+                        <tr>
+                            @*<td>{{datainsert.NO}}</td>*@
+                            <td><a href="" ng-click="vm.delete(datainsert.caccountno)"><span class="glyphicon glyphicon-trash"></span></a></td>
+                            <td>{{datainsert.dropcode}}</td>
+                            <td>{{datainsert.subcn}}</td>
+                            <td>{{datainsert.quantity}}</td>
+                            <td>{{datainsert.caccountno}}</td>
+                            <td>{{datainsert.remark}}</td>
+                            <td>KIUA</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" ng-click="vm.show()">SUBMIT</button>
+                <button class="btn btn-warning" ng-click="vm.reset()">CANCEL</button>
+            </div>
+        </div>
+        <div class="modal fade" id="submission" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h5>Confirm submition</h5>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="vm.create()">Yes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="vm.back()">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="datainsert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div id="refercode" style="display:none">
+                            <p ng-repeat="refercode in vm.referencecode">{{refercode}}</p> &nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

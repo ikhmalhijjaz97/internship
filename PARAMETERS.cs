@@ -61,6 +61,7 @@ namespace LibraryApp.Models
     public class branch
     {       
         public string origin_code { get; set; }
+        public string origin_desc { get; set; }
     }
     public class cntype { 
         public string cCNTypeCode { get; set; }

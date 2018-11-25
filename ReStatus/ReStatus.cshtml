@@ -1,0 +1,90 @@
+﻿<div  ng-app="app" ng-controller="app.views.ReStatus.ReStatus as vm">
+    <div><h3>Requisition Status</h3></div>
+    <form>
+        <div>
+            <label>Search By:</label>
+            <select ng-change="vm.search(data)">
+                <option>Requisition ID</option>
+                <option>Account No</option>
+                <option>Branch</option>
+            </select>
+            <button class="btn btn-primary">Search</button>
+        </div>
+        <div style="display:none;">
+            <label>Requisition ID:</label>
+            <input />
+        </div>
+        <div style="display:none;">
+            <label>Account No:</label>
+            <input />
+        </div>
+        <div>
+            <label>Branch:</label>
+            <select>
+                <option ng-repeat=""></option> 
+            </select> <br />
+            <label>Date Range:</label>
+            <input type="datetime-local"/> &nbsp;
+            <input type="datetime-local"/> <br />
+            <label>Category :</label>
+            <select>
+                <option></option>
+            </select><br />
+            <label>Status :</label>
+            <select>
+                <option value="A">ALL</option>
+                <option value="N">New Request</option>
+                <option value="R">Rejected</option>
+                <option value="A">Approved</option>
+                <option value="I">In progress</option>
+                <option value="C">Completed</option>
+                <option value="D">Cancelled</option>
+            </select><br />
+        </div>
+    </form>
+    <div id="table">
+        <table>
+            <trhead>
+                <tr>
+                    <th>No.</th>
+                    <th></th>
+                    <th>Requisition ID</th>
+                    <th>Category</th>
+                    <th>Account No.</th>
+                    <th>Company Name</th>
+                    <th>Qty</th>
+                    <th>App Qty</th>
+                    <th>Prt Qty</th>
+                    <th>Requested By</th>
+                    <th>Approved By</th>
+                    <th>Printed By</th>
+                    <th>Status</th>
+                    <th>CBP No.</th>
+                </tr>
+            </trhead>
+            <trbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </trbody>
+        </table>
+    </div>
+    
+</div>

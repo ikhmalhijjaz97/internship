@@ -99,7 +99,8 @@ namespace LibraryApp.Models
             getbranch.Open();
             List<branch> branches = new List<branch>();
             string d = " ";
-            d = "select origin_code from gdexpdb.dbo.station WHERE  status = '1'";
+            // d = "select origin_code from gdexpdb.dbo.station WHERE  status = '1'";
+            d = "select origin_code,( origin_code + '_'+ origin_desc) description from gdexpdb.dbo.station";
             SqlCommand connect = new SqlCommand(d, getbranch);
             using (SqlDataReader read = connect.ExecuteReader())
             {
@@ -107,7 +108,8 @@ namespace LibraryApp.Models
                 {
                     branch getbranch1 = new branch();
                     getbranch1.origin_code = read["origin_code"].ToString();
-                    
+                    getbranch1.origin_code = read["origin_desc"].ToString();
+
                     branches.Add(getbranch1);
                 }
             }
@@ -191,12 +193,12 @@ namespace LibraryApp.Models
                refno = "SS" + reqtype + Convert.ToString(alphabet1) + "/" + num1.ToString().PadLeft(9, '0');
             }
             con.Open();
-            //string query2 = "";
-            //query2 = "UPDATE [CNAS].[cnas].[Refno] SET nStart = " + num1 + " WHERE cYear = '" + yr + "' and cReqType = '" + chkcn + "' ";
+            string query2 = "";
+            query2 = "UPDATE [CNAS].[cnas].[Refno] SET nStart = " + num1 + " WHERE cYear = '" + yr + "' and cReqType = '" + chkcn + "' ";
 
-            //cmd = new SqlCommand(query2, con);
-            //cmd.ExecuteNonQuery();
-            //con.Close();
+            cmd = new SqlCommand(query2, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
             return refno;
         }
 
