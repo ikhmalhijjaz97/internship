@@ -49,10 +49,7 @@ namespace LibraryApp.Models
     {
         public string dropcode { get; set; }
     }
-    //public class input2
-    //{
-    //    public string  { get; set; }
-    //}
+
     public class companyname
     {
         public string ccompanyname { get; set; }
@@ -61,7 +58,7 @@ namespace LibraryApp.Models
     public class branch
     {       
         public string origin_code { get; set; }
-        public string origin_desc { get; set; }
+         public string description { get; set; }
     }
     public class cntype { 
         public string cCNTypeCode { get; set; }

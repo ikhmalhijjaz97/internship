@@ -77,7 +77,9 @@
                     dropcode: '',
                     caccountno: '',
                     quantity: '',
-                    remark: ''
+                    remark: '',
+                    dropname: '',
+                    subcname: ''
 
                 };
                 var insert1 = {
@@ -87,7 +89,9 @@
                     dropcode: '',
                     caccountno: '',
                     quantity: '',
-                    remark: ''
+                    remark: '',
+                    dropname: '',
+                    subcname: ''
 
                 };
                 var insert2 = {
@@ -97,7 +101,9 @@
                     dropcode: '',
                     caccountno: '',
                     quantity: '',
-                    remark: ''
+                    remark: '',
+                    dropname: '',
+                    subcname: ''
 
                 };
                 var insert3 = {
@@ -107,7 +113,9 @@
                     dropcode: '',
                     caccountno: '',
                     quantity: '',
-                    remark: ''
+                    remark: '',
+                    dropname: '',
+                    subcname: ''
 
                 };
                 var insert4 = {
@@ -117,7 +125,9 @@
                     dropcode: '',
                     caccountno: '',
                     quantity: '',
-                    remark: ''
+                    remark: '',
+                    dropname: '',
+                    subcname: ''
 
                 };
                 var insert5 = {
@@ -127,7 +137,9 @@
                     dropcode: '',
                     caccountno: '',
                     quantity: '',
-                    remark: ''
+                    remark: '',
+                    dropname: '',
+                    subcname: ''
 
                 };
                 var insert6 = {
@@ -137,7 +149,9 @@
                     dropcode: '',
                     caccountno: '',
                     quantity: '',
-                    remark: ''
+                    remark: '',
+                    dropname: '',
+                    subcname: ''
 
                 };
                 var insert7 = {
@@ -147,7 +161,9 @@
                     dropcode: '',
                     caccountno: '',
                     quantity: '',
-                    remark: ''
+                    remark: '',
+                    dropname: '',
+                    subcname: ''
 
                 };
                 var insert8 = {
@@ -157,7 +173,9 @@
                     dropcode: '',
                     caccountno: '',
                     quantity: '',
-                    remark: ''
+                    remark: '',
+                    dropname: '',
+                    subcname: ''
 
                 };
                 var insert9 = {
@@ -167,15 +185,19 @@
                     dropcode: '',
                     caccountno: '',
                     quantity: '',
-                    remark: ''
+                    remark: '',
+                    dropname: '',
+                    subcname: ''
 
                 };
        // vm.insert3 = [];
+
               
         vm.bol = false;
         vm.getcn = [];
         vm.getsubcn = [];
         vm.account = [];
+        vm.referencecode=[];
                 vm.appear = [];
                 vm.branch=[];
         //var data2 = [];
@@ -264,7 +286,7 @@
 
                 vm.add = function (data) {
 
-                    if (data.insert.dropcode !== "" && data.insert.subcn !== "" && data.insert.caccountno !== "" && data.insert.quantity !== "") {
+                    if (data.insert.dropcode !== "" && data.insert.subcn !== "" && data.insert.caccountno !== null && data.insert.caccountno !== "" && data.insert.quantity !== "") {
 
                         for (var i = 0; i < (check.length); i++) {
                             if (data.insert.caccountno === check[i]) {
@@ -281,7 +303,16 @@
                             insert0.caccountno = data.insert.caccountno;
                             insert0.quantity = data.insert.quantity;
                             insert0.remark = data.insert.remark;
-
+                            for (var drop = 0; drop < vm.getcn.length; drop++) {
+                                if (vm.getcn[drop].dropcode === data.insert.dropcode) {
+                                    insert0.dropname = vm.getcn[drop].desc;
+                                }
+                            }
+                            for (var drop1 = 0; drop1 < vm.getsubcn.length; drop1++) {
+                                if (vm.getsubcn[drop1].dropcode === data.insert.subcn) {
+                                    insert0.subcname = vm.getsubcn[drop1].desc; 
+                                }
+                            }
                             vm.appear.push(insert0);
                         }
                         else if (count === 1) {
@@ -292,7 +323,16 @@
                             insert1.caccountno = data.insert.caccountno;
                             insert1.quantity = data.insert.quantity;
                             insert1.remark = data.insert.remark;
-
+                            for (var drop11 = 0; drop11 < vm.getcn.length; drop11++) {
+                                if (vm.getcn[drop11].dropcode === data.insert.dropcode) {
+                                    insert1.dropname = vm.getcn[drop11].desc;
+                                }
+                            }
+                            for (var drop111 = 0; drop111 < vm.getsubcn.length; drop111++) {
+                                if (vm.getsubcn[drop111].dropcode=== data.insert.subcn) {
+                                    insert1.subcname = vm.getsubcn[drop111].desc;
+                                }
+                            }
                             vm.appear.push(insert1);
                         }
                         else if (count === 2) {
@@ -303,7 +343,16 @@
                             insert2.caccountno = data.insert.caccountno;
                             insert2.quantity = data.insert.quantity;
                             insert2.remark = data.insert.remark;
-
+                            for (var drop9 = 0; drop9 < vm.getcn.length; drop9++) {
+                                if (vm.getcn[drop9].dropcode === data.insert.dropcode) {
+                                    insert2.dropname = vm.getcn[drop9].desc;
+                                }
+                            }
+                            for (var drop19 = 0; drop19 < vm.getsubcn.length; drop19++) {
+                                if (vm.getsubcn[drop19].dropcode === data.insert.subcn) {
+                                    insert2.subcname = vm.getsubcn[drop19].desc;
+                                }
+                            }
                             vm.appear.push(insert2);
                         }
                         else if (count === 3) {
@@ -314,7 +363,16 @@
                             insert3.caccountno = data.insert.caccountno;
                             insert3.quantity = data.insert.quantity;
                             insert3.remark = data.insert.remark;
-
+                            for (var drop8 = 0; drop8 < vm.getcn.length; drop8++) {
+                                if (vm.getcn[drop8].dropcode === data.insert.dropcode) {
+                                    insert3.dropname = vm.getcn[drop8].desc;
+                                }
+                            }
+                            for (var drop18 = 0; drop18 < vm.getsubcn.length; drop18++) {
+                                if (vm.getsubcn[drop18].dropcode === data.insert.subcn) {
+                                    insert3.subcname = vm.getsubcn[drop18].desc;
+                                }
+                            }
                             vm.appear.push(insert3);
                         }
                         else if (count === 4) {
@@ -325,7 +383,16 @@
                             insert4.caccountno = data.insert.caccountno;
                             insert4.quantity = data.insert.quantity;
                             insert4.remark = data.insert.remark;
-
+                            for (var drop7 = 0; drop7 < vm.getcn.length; drop7++) {
+                                if (vm.getcn[drop7].dropcode === data.insert.dropcode) {
+                                    insert4.dropname = vm.getcn[drop7].desc;
+                                }
+                            }
+                            for (var drop17 = 0; drop17 < vm.getsubcn.length; drop17++) {
+                                if (vm.getsubcn[drop17].dropcode === data.insert.subcn) {
+                                    insert4.subcname = vm.getsubcn[drop17].desc;
+                                }
+                            }
                             vm.appear.push(insert4);
                         }
                         else if (count === 5) {
@@ -336,7 +403,16 @@
                             insert5.caccountno = data.insert.caccountno;
                             insert5.quantity = data.insert.quantity;
                             insert5.remark = data.insert.remark;
-
+                            for (var drop6 = 0; drop6 < vm.getcn.length; drop6++) {
+                                if (vm.getcn[drop6].dropcode === data.insert.dropcode) {
+                                    insert5.dropname = vm.getcn[drop6].desc;
+                                }
+                            }
+                            for (var drop16 = 0; drop16 < vm.getsubcn.length; drop16++) {
+                                if (vm.getsubcn[drop16].dropcode === data.insert.subcn) {
+                                    insert5.subcname = vm.getsubcn[drop16].desc;
+                                }
+                            }
                             vm.appear.push(insert5);
                         }
                         else if (count === 6) {
@@ -347,7 +423,16 @@
                             insert6.caccountno = data.insert.caccountno;
                             insert6.quantity = data.insert.quantity;
                             insert6.remark = data.insert.remark;
-
+                            for (var drop5 = 0; drop5 < vm.getcn.length; drop5++) {
+                                if (vm.getcn[drop5].dropcode === data.insert.dropcode) {
+                                    insert6.dropname = vm.getcn[drop5].desc;
+                                }
+                            }
+                            for (var drop15 = 0; drop15 < vm.getsubcn.length; drop15++) {
+                                if (vm.getsubcn[drop15].dropcode === data.insert.subcn) {
+                                    insert6.subcname = vm.getsubcn[drop15].desc;
+                                }
+                            }
                             vm.appear.push(insert6);
                         }
                         else if (count === 7) {
@@ -358,7 +443,16 @@
                             insert7.caccountno = data.insert.caccountno;
                             insert7.quantity = data.insert.quantity;
                             insert7.remark = data.insert.remark;
-
+                            for (var drop4 = 0; drop4 < vm.getcn.length; drop4++) {
+                                if (vm.getcn[drop4].dropcode === data.insert.dropcode) {
+                                    insert7.dropname = vm.getcn[drop4].desc;
+                                }
+                            }
+                            for (var drop14 = 0; drop14 < vm.getsubcn.length; drop14++) {
+                                if (vm.getsubcn[drop14].dropcode === data.insert.subcn) {
+                                    insert7.subcn = vm.getsubcn[drop14].desc;
+                                }
+                            }
                             vm.appear.push(insert7);
                         }
                         else if (count === 8) {
@@ -369,7 +463,16 @@
                             insert8.caccountno = data.insert.caccountno;
                             insert8.quantity = data.insert.quantity;
                             insert8.remark = data.insert.remark;
-
+                            for (var drop3 = 0; drop3 < vm.getcn.length; drop3++) {
+                                if (vm.getcn[drop3].dropcode === data.insert.dropcode) {
+                                    insert8.dropname = vm.getcn[drop3].desc;
+                                }
+                            }
+                            for (var drop13 = 0; drop13 < vm.getsubcn.length; drop13++) {
+                                if (vm.getsubcn[drop13].dropcode === data.insert.subcn) {
+                                    insert8.subcname = vm.getsubcn[drop13].desc;
+                                }
+                            }
                             vm.appear.push(insert8);
                         }
                         else {
@@ -380,7 +483,16 @@
                             insert9.caccountno = data.insert.caccountno;
                             insert9.quantity = data.insert.quantity;
                             insert9.remark = data.insert.remark;
-
+                            for (var drop2 = 0; drop2 < vm.getcn.length; drop2++) {
+                                if (vm.getcn[drop2].dropcode === data.insert.dropcode) {
+                                    insert9.dropname = vm.getcn[drop2].desc;
+                                }
+                            }
+                            for (var drop12 = 0; drop12 < vm.getsubcn.length; drop12++) {
+                                if (vm.getsubcn[drop12].dropcode === data.insert.subcn) {
+                                    insert9.subcname = vm.getsubcn[drop12].desc;
+                                }
+                            }
                             vm.appear.push(insert9);
                         }
                         if (count.length > 9) {
@@ -394,7 +506,7 @@
                                 vm.count1.push(inc);
                             }
                         }
-                       
+                        document.getElementById("refercode").style.display = "none";
                         // document.getElementById("table2").style.removeProperty('display');
 
                     }
@@ -507,12 +619,14 @@
                     vm.datainsert.PrintTypeGrp = group1;
                     vm.datainsert.cEmailTo = null;
                     vm.datainsert.cRequestRemark = null;
-                    vm.datainsert.cCreatedBrno = null;
-                    vm.datainsert.cBrno = null;
+                 
+                  
                     branchservice.create(vm.datainsert).then(function () {
                         abp.notify.info("Saved Successfully");
                     });
-                    
+                   //document.getElementById("refercodetable").style.display = "";
+                    $('#refercodetable').modal("show");
+                    vm.reset();
                    
                 };
 
@@ -528,17 +642,35 @@
 
                 function getdata2(datain) {
                     var type1 = (type[0].cCNTypeCode).toString();
-                    paraService.cng("CNNS").then(function (result) {
-                        group = result.data;
-                        getdata3(datain);
-                    });
+                    try {
+                        paraService.cng(type).then(function (result) {
+                            group = result.data;
+                            getdata3(datain);
+                        });
+                    }
+                    catch(err){
+                        paraService.cngdef().then(function (result) {
+                            group = result.data;
+                            getdata3(datain);
+                        });
+                            }
                 };
 
-                function getdata3(datain) {
-                    paraService.getrefer("B").then(function (result) {
-                        refno = result.data;
-                        insertdatato(datain, type[0].cCNTypeCode, group[0].printtypegrp, refno);
-                    });
+                    function getdata3(datain) {
+                        var bol = true;
+                    do {
+                        paraService.getrefer("B").then(function (result) {
+                            refno = result.data;
+                        });
+                        for (var checkref = 0; checkref < vm.referencecode.length; checkref++) {
+                            if (vm.referencecode[checkref] === refno) {
+                                bol = false;
+                            }
+                        }
+                    } while (bol===false);
+                   
+                    vm.referencecode.push(refno);
+                    insertdatato(datain, type[0].cCNTypeCode, group[0].printtypegrp, refno);
                 };
                 vm.create = function () {
                     for (var in1 = 0; in1 < (vm.appear.length); in1++) {
@@ -550,7 +682,7 @@
                         //var group = {
                         //    printtypegrp: ''
                         //};
-                        getdata(vm.appear[in1]);
+                               getdata(vm.appear[in1]);
                         
                       
   
@@ -571,10 +703,14 @@
                     vm.appear.splice(0);
                     check.splice(0);
                     vm.count1.splice(0);
+                   
                     count = 0;
                 };
 
-
+                vm.close = function () {
+                    $('#refercodetable').modal("hide");
+                    vm.referencecode.splice(0);
+                }
 
 
 

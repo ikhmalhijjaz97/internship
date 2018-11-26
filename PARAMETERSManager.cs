@@ -17,7 +17,7 @@ namespace LibraryApp.Models
             getgrp.Open();
             List<cngrp> grp = new List<cngrp>();
             string d = " ";
-            d = "select PrintTypeGrp from [CNAS].[cnas].[CNType] A (nolock) where cCNType ='"+code+"'";
+            d = "select PrintTypeGrp from [CNAS].[cnas].[CNType] A (nolock) where cCNType ='" + code + "'";
             SqlCommand connect = new SqlCommand(d, getgrp);
             using (SqlDataReader read = connect.ExecuteReader())
             {
@@ -33,13 +33,35 @@ namespace LibraryApp.Models
             return grp;
         }
 
+        public IEnumerable<cngrp> cngrpdef()
+        {
+            SqlConnection getgrpdef = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Second"].ConnectionString);
+            getgrpdef.Open();
+            List<cngrp> grpdef = new List<cngrp>();
+            string ddef = " ";
+            ddef = "select PrintTypeGrp from [CNAS].[cnas].[CNType] A (nolock) where cCNType =' '";
+            SqlCommand connect = new SqlCommand(ddef, getgrpdef);
+            using (SqlDataReader read = connect.ExecuteReader())
+            {
+                while (read.Read())
+                {
+                    cngrp getgrp1 = new cngrp();
+                    getgrp1.printtypegrp = read["printtypegrp"].ToString();
+
+                    grpdef.Add(getgrp1);
+                }
+            }
+            getgrpdef.Close();
+            return grpdef;
+        }
+
         public IEnumerable<cntype> cntypecode(string acc)
         {
             SqlConnection gettype = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Second"].ConnectionString);
             gettype.Open();
             List<cntype> type = new List<cntype>();
             string d = " ";
-            d = "select cCNTypeCode from CRM.dbo.apickupdetails A (nolock) where caccountNo = '"+acc+"'";
+            d = "select cCNTypeCode from CRM.dbo.apickupdetails A (nolock) where caccountNo = '" + acc + "'";
             SqlCommand connect = new SqlCommand(d, gettype);
             using (SqlDataReader read = connect.ExecuteReader())
             {
@@ -52,21 +74,21 @@ namespace LibraryApp.Models
                 }
             }
             gettype.Close();
-           // string type1 = type.ToString();
+            // string type1 = type.ToString();
             return type;
         }
 
-        public async Task  create(string refno, string CN, string subcn, string account, string branch, string quantity, string remark, string codetype, string codegrp)
+        public async Task create(string refno, string CN, string subcn, string account, string branch, string quantity, string remark, string codetype, string codegrp)
         {
-           // SqlConnection con21 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Second"].ConnectionString);
-           // con21.Open();
-           // string create1 = "";
-           // create1= "INSERT INTO [CNAS].[cnas].[BranchRequest] (" +"cOrderID,cTrxCode,cType,cTypeCd,cPrtCode,xQtty,xPrtQtty,xCancelCnt,dUnitPrice,cTypeDesc,cImpReq,cSenderInd,cActno,cAppvDept,cChargeTo,cCNFor,cDesc,cReceiverInd,cRecAcc,cRequestRemark" + ",cstatus,cPrintReq,cBrno,cBrActno,cCreatedBrno,cCreatedBy,dCreated,cCBP,cCBPRvr,cCBPDept,cCBPSender,cUpdatedBy,dUpdateBy,cApprovedBy,dApprovedBy,cPrintedBy,dtPrinted,cAcknwBy" +",cAcknwBrno,dAcknw,cStartNo,cEndNO,cSubActno,cRejectRemark,cActionRemark,cCNTypeCode,PrintTypeGrp)" + "values ('" + refno + "','B','" + CN + "','" + subcn + "','BLANK'" + ",'" + quantity + "',NULL,NULL,NULL,NULL,NULL,NULL,'" + account + "',NULL,NULL,NULL,NULL,NULL,NULL" + ",'" + remark + "','N',NULL,'123',NULL,'" + branch + "','50604','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss ttt") + "',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'" + codetype + "','" + codegrp + "')";
-           // SqlCommand insertcom = new SqlCommand(create1, con21);
-           // await insertcom.ExecuteNonQuery();
-           // con21.Close();
-           //// return 1;
-            
+            // SqlConnection con21 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Second"].ConnectionString);
+            // con21.Open();
+            // string create1 = "";
+            // create1= "INSERT INTO [CNAS].[cnas].[BranchRequest] (" +"cOrderID,cTrxCode,cType,cTypeCd,cPrtCode,xQtty,xPrtQtty,xCancelCnt,dUnitPrice,cTypeDesc,cImpReq,cSenderInd,cActno,cAppvDept,cChargeTo,cCNFor,cDesc,cReceiverInd,cRecAcc,cRequestRemark" + ",cstatus,cPrintReq,cBrno,cBrActno,cCreatedBrno,cCreatedBy,dCreated,cCBP,cCBPRvr,cCBPDept,cCBPSender,cUpdatedBy,dUpdateBy,cApprovedBy,dApprovedBy,cPrintedBy,dtPrinted,cAcknwBy" +",cAcknwBrno,dAcknw,cStartNo,cEndNO,cSubActno,cRejectRemark,cActionRemark,cCNTypeCode,PrintTypeGrp)" + "values ('" + refno + "','B','" + CN + "','" + subcn + "','BLANK'" + ",'" + quantity + "',NULL,NULL,NULL,NULL,NULL,NULL,'" + account + "',NULL,NULL,NULL,NULL,NULL,NULL" + ",'" + remark + "','N',NULL,'123',NULL,'" + branch + "','50604','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss ttt") + "',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'" + codetype + "','" + codegrp + "')";
+            // SqlCommand insertcom = new SqlCommand(create1, con21);
+            // await insertcom.ExecuteNonQuery();
+            // con21.Close();
+            //// return 1;
+
         }
 
         public IEnumerable<companyname> getAccount(string CNdata, string subCN, string branch)
@@ -75,7 +97,7 @@ namespace LibraryApp.Models
             con2.Open();
             string account = "";
             List<companyname> companylist = new List<companyname>();
-            account = "select A.caccountno,A.caccttype,A.csubaccttype,(A.caccountno + ' - ' +B.ccompanyname) ccompanyname from CRM.dbo.aacctdetails A (nolock) left join CRM.dbo.apickupdetails B (nolock) on A.caccountno = B.caccountNo left join CRM.dbo.acustomer C (nolock) on A.caccountno = C.caccountNo where A.caccttype = '" +CNdata+ "' and A.csubaccttype ='" +subCN+ "'  and B.cPickOriginCode ='"+ branch + "' and C.cStatus = '08' order by A.caccountno asc";
+            account = "select A.caccountno,A.caccttype,A.csubaccttype,(A.caccountno + ' - ' +B.ccompanyname) ccompanyname from CRM.dbo.aacctdetails A (nolock) left join CRM.dbo.apickupdetails B (nolock) on A.caccountno = B.caccountNo left join CRM.dbo.acustomer C (nolock) on A.caccountno = C.caccountNo where A.caccttype = '" + CNdata + "' and A.csubaccttype ='" + subCN + "'  and B.cPickOriginCode ='" + branch + "' and C.cStatus = '08' order by A.caccountno asc";
             SqlCommand command = new SqlCommand(account, con2);
             using (SqlDataReader dataread = command.ExecuteReader())
             {
@@ -108,8 +130,7 @@ namespace LibraryApp.Models
                 {
                     branch getbranch1 = new branch();
                     getbranch1.origin_code = read["origin_code"].ToString();
-                    getbranch1.origin_code = read["origin_desc"].ToString();
-
+                    getbranch1.description = read["description"].ToString();
                     branches.Add(getbranch1);
                 }
             }
@@ -156,7 +177,7 @@ namespace LibraryApp.Models
             }
             SqlCommand cmd = new SqlCommand("Select cCtry,cReqType,cYear,nStart,nMax,cRemark from [CNAS].[cnas].[Refno] with (nolock) " +
                                 "where cYear = right(YEAR(GETDATE()),4) and cReqType = '" + chkcn + "'", con);
-           SqlDataReader dr = cmd.ExecuteReader();
+            SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
                 oldrefno = dr["nStart"].ToString().Trim();
@@ -166,7 +187,7 @@ namespace LibraryApp.Models
             else
             {
                 string query = "";
-                //con.Close();
+                con.Close();
                 con1.Open();
                 query = "INSERT INTO [CNAS].[cnas].[Refno] (cCtry,cReqType,cYear,nStart,nMax,cRemark) VALUES ('MY'," + chkcn + "', right(YEAR(GETDATE()),4) ,0,'999999999','')";
                 cmd = new SqlCommand(query, con1);
@@ -180,17 +201,17 @@ namespace LibraryApp.Models
             dr.Close();
             con.Close();
 
-           string alphabet1 = Convert.ToString(DateTime.Now.Year.ToString());
+            string alphabet1 = Convert.ToString(DateTime.Now.Year.ToString());
 
-          int  num1 = Convert.ToInt32(oldrefno) + 1;
+            int num1 = Convert.ToInt32(oldrefno) + 1;
 
             if (chkcn == "F")
             {
-               refno = "SS" + reqtype + Convert.ToString(alphabet1) + "/" + num1.ToString().PadLeft(6, '0');
+                refno = "SS" + reqtype + Convert.ToString(alphabet1) + "/" + num1.ToString().PadLeft(6, '0');
             }
             else
             {
-               refno = "SS" + reqtype + Convert.ToString(alphabet1) + "/" + num1.ToString().PadLeft(9, '0');
+                refno = "SS" + reqtype + Convert.ToString(alphabet1) + "/" + num1.ToString().PadLeft(9, '0');
             }
             con.Open();
             string query2 = "";
@@ -208,7 +229,7 @@ namespace LibraryApp.Models
             getsub.Open();
             List<CN> subdata = new List<CN>();
             string con = " ";
-            con = "select dropcode,[desc] from gdexpdb.oms.parameter where category = '"+ input + "' and status = '1' and dropcode <> '0206'";
+            con = "select dropcode,[desc] from gdexpdb.oms.parameter where category = '" + input + "' and status = '1' and dropcode <> '0206'";
             SqlCommand command = new SqlCommand(con, getsub);
             using (SqlDataReader read1 = command.ExecuteReader())
             {

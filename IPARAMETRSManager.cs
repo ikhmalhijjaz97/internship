@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace LibraryApp.Models
 {
-   public interface IPARAMETERSManager: IDomainService
+    public interface IPARAMETERSManager : IDomainService
     {
         IEnumerable<CN> getCNtype();
         IEnumerable<branch> getbranch();
         IEnumerable<cngrp> cngrp(string code);
         IEnumerable<cntype> cntypecode(string acc);
-        
+        IEnumerable<cngrp> cngrpdef();
         IEnumerable<CN> getSubCNtype(string input);
         IEnumerable<companyname> getAccount(string CNdata, string subCN, string branch);
         string getreferenceNO(string chkcn);

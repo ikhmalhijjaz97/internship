@@ -14,6 +14,7 @@ namespace LibraryApp.Parameter1
         IEnumerable<CN> GetCN1();
         IEnumerable<branch> getb();
         IEnumerable<cngrp> cng(string code);
+        IEnumerable<cngrp> cngdef();
         IEnumerable<cntype> cnt(string acc);
         IEnumerable<CN> GetsubCN(string input);
         IEnumerable<companyname> Gataccount(string input,string input2, string input3);

@@ -71,5 +71,9 @@ namespace LibraryApp.Parameter1
         {
             return _paraManager.getSubCNtype(input);
         }
+        public IEnumerable<cngrp> cngdef() {
+
+            return _paraManager.cngrpdef();
+        }
     }
 }
