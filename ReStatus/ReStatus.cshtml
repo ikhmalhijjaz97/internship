@@ -1,49 +1,59 @@
 ﻿<div  ng-app="app" ng-controller="app.views.ReStatus.ReStatus as vm">
     <div><h3>Requisition Status</h3></div>
     <form>
-        <div>
+        <div class="form-group">
             <label>Search By:</label>
-            <select ng-change="vm.search(data)">
-                <option>Requisition ID</option>
-                <option>Account No</option>
-                <option>Branch</option>
+            <select class="form-control" ng-change="vm.search(vm.filter)" ng-model="vm.filter">
+                <option selected>Please Select</option>
+                <option value="ID">Requisition ID</option>
+                <option value="ACC">Account No</option>
+                <option value="BRANCH">Branch</option>
             </select>
-            <button class="btn btn-primary">Search</button>
+            <button class="btn btn-primary" ng-click="vm.searchdata(vm.datasearch)">Search</button>
         </div>
-        <div style="display:none;">
+        <div class="form-group" style="display:none;" id="reqid">
             <label>Requisition ID:</label>
-            <input />
+            <input ng-model="vm.datasearch"/>
         </div>
-        <div style="display:none;">
+        <div class="form-group" style="display:none;" id="Acc">
             <label>Account No:</label>
-            <input />
+            <input ng-model="vm.datasearch"/>
         </div>
-        <div>
-            <label>Branch:</label>
-            <select>
-                <option ng-repeat=""></option> 
-            </select> <br />
-            <label>Date Range:</label>
-            <input type="datetime-local"/> &nbsp;
-            <input type="datetime-local"/> <br />
-            <label>Category :</label>
-            <select>
-                <option></option>
-            </select><br />
-            <label>Status :</label>
-            <select>
-                <option value="A">ALL</option>
-                <option value="N">New Request</option>
-                <option value="R">Rejected</option>
-                <option value="A">Approved</option>
-                <option value="I">In progress</option>
-                <option value="C">Completed</option>
-                <option value="D">Cancelled</option>
-            </select><br />
+        <div  style="display:none;" id="branchse">
+            <div class="form-group">
+                <label>Branch:</label>
+                <select class="form-control">
+                    <option ng-repeat=""></option>
+                </select> <br />
+            </div>
+            <div class="form-group">
+                <label>Date Range:</label>
+                <input type="datetime-local" /> &nbsp;
+                <input type="datetime-local" /> <br />
+            </div>
+            <div class="form-group">
+                <label>Category :</label>
+                <select>
+                    <option></option>
+                </select><br />
+            </div>
+            <div class="form-group">
+                <label>Status :</label>
+                <select class="form-control">
+                    <option value="A">ALL</option>
+                    <option value="N">New Request</option>
+                    <option value="R">Rejected</option>
+                    <option value="A">Approved</option>
+                    <option value="I">In progress</option>
+                    <option value="C">Completed</option>
+                    <option value="D">Cancelled</option>
+                </select><br />
+            </div>
+           
         </div>
     </form>
     <div id="table">
-        <table>
+        <table class="table">
             <trhead>
                 <tr>
                     <th>No.</th>
@@ -63,25 +73,22 @@
                 </tr>
             </trhead>
             <trbody>
-                <tr>
+                <tr ng-repeat="status in vm.data">
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><span class="glyphicon glyphicon-trash"></span></td>
+                    <td>{{status.cOrderID}}</td>
+                    <td>{{status.category}}</td>
+                    <td>{{status.cActno }}</td>
+                    <td>{{status.ccompanyname}}</td>
+                    <td>{{status.xQtty }}</td>
+                    <td>{{status.category}}</td>
+                    <td>{{status.xApprQtty}}</td>
+                    <td>{{status.xPrtQtty}}</td>
+                    <td>{{status.StaffName}}</td>
+                    <td>{{status.cApprovedBy}}</td>
+                    <td>{{status.cPrintedBy}}</td>
+                    <td>{{status.cstatus}}</td>
+                    <td>{{status.cCBP}}</td>                   
                 </tr>
             </trbody>
         </table>

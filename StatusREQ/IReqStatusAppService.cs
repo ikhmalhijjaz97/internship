@@ -12,5 +12,7 @@ namespace LibraryApp.StatusREQ
     {
         IEnumerable<BranchStatus> getstatus();
         IEnumerable<category> getcate();
+        IEnumerable<ReqStatus> searchbyID(string input);
+        IEnumerable<ReqStatus> searchbyACC(string input);
     }
 }

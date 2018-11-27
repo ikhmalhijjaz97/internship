@@ -24,5 +24,15 @@ namespace LibraryApp.StatusREQ
         {
             return _reqstatusmanager.getbranchstatus(); 
         }
+
+        public IEnumerable<ReqStatus> searchbyACC(string input)
+        {
+            return _reqstatusmanager.searchAcc(input);
+        }
+
+        public IEnumerable<ReqStatus> searchbyID(string input)
+        {
+            return _reqstatusmanager.searchID(input);
+        }
     }
 }

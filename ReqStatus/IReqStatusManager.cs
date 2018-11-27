@@ -11,5 +11,8 @@ namespace LibraryApp.Models.ReqStatus
     {
         IEnumerable<BranchStatus> getbranchstatus();
         IEnumerable<category> getcategory();
+        IEnumerable<ReqStatus> searchID(string ID);
+        IEnumerable<ReqStatus> searchAcc(string Accountnum);
+
     }
 }
