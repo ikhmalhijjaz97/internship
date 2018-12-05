@@ -1,0 +1,90 @@
+﻿<div ng-app="app" ng-controller="app.views.CustomerCon.Custcon as vm">
+    <div class="card">
+        <div class="modal-header">
+            <h4>Customer consignment</h4>
+        </div>
+        <div class="modal-body" id="bodyse3">
+            <form id="form1">
+                <div class="row">
+                   
+                    <div class="col-xs-8">
+                        <label>Account :</label>
+                        <input class="form-control" ng-model="vm.check.account" />
+                    </div>
+                   
+                    <button class="btn btn-primary" ng-click="vm.checkacc(vm.check.account)">check</button><br />
+                </div>
+                <div>
+                    <div class="col-md-6">
+                        <div>
+                            <label>Account type :</label>
+                            <input  class="form-control"/><br />
+                        </div>
+                        <div>
+                            <label>Print Type :</label>
+                          <select id="print" class="form-control">
+                              <option>Sender only</option>
+                          </select>
+                        </div>
+                        <div>
+                            <label>Sender :</label>
+                            <input class="form-control" />
+                            <p id="address"></p>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label>Requisition Type:</label>
+                            <div class="form-check">
+                                <input id="normal" class="form-check-input"  type="radio" />
+                                <label>Normal</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="rc" class="form-check-input"  type="radio" />
+                                <label>RC</label>
+                            </div><br />
+                            <div>
+                                <label>Quantity :</label>
+                                <input class="form-control"/>
+                            </div>
+                            <div>
+                                <label>Receiver :</label>
+                                <input class="form-control"/>
+                                <p id="addrceiver"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            
+                            <div class="col-xs-8">
+                                <label>Email To:</label>
+                                <input class="form-control" /><br />
+                            </div>
+                         
+                        </div>
+                        <div>
+                           
+                            <div class="col-xs-8">
+                                <label>Remarks :</label>
+                                <input class="form-control" />
+                            </div>
+                         
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div id="pluspage">
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="vm.add()"> Add</button>
+            <button class="btn btn-primary" ng-click="vm.submit()">Submit</button>
+        </div>
+    </div>
+  
+
+    
+</div>
