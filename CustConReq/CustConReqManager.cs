@@ -40,7 +40,9 @@ namespace LibraryApp.Models.CustConReq
                     data2.cstate = datacus["cstate"].ToString();
                     data2.cStatus = datacus["cStatus"].ToString();
                     data2.csubaccttype = datacus["csubaccttype"].ToString();
-                    data2.ctown = datacus["ctown"].ToString();   
+                    data2.ctown = datacus["ctown"].ToString();
+                    data2.TypeAcc = datacus["TypeAcc"].ToString();
+                    data2.SubAccType = datacus["SubAccType"].ToString();
                     getcustomer.Add(data2);
 
                 }

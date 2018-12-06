@@ -153,7 +153,29 @@ var controllerId="app.views.CustomerCon.Custcon";
                 csubaccttype :''
 
             }; 
-            var index = 0;
+            var index = 1;
+
+            //enter for accno
+            document.getElementById("acc").addEventListener('keypress', function (e) {
+                if (e.key === "Enter") {
+                    var x = document.getElementById("acc").value;
+                    vm.checkacc(x);
+                }
+            });
+            document.getElementById("body1").addEventListener('keypress', function () {
+              
+                for (var bod = 0; bod < (index + 1); bod++) {
+                    if (bod === index) {
+                        var bod1 = "acc" + index;
+                        document.getElementById(bod1).addEventListener('keypress', function (e) {
+                            if (e.key === "Enter") {
+                                var x = document.getElementById(bod1).value;
+                                vm.checkacc(x);
+                            }
+                        });
+                    }
+                }
+            });
 
 
             vm.add = function () {
@@ -169,10 +191,10 @@ var controllerId="app.views.CustomerCon.Custcon";
                     return $('\
            <br /><br />  <form>\
            <div class="col-xs-8">\
-           < label > Account :</label >\
+           <label > Account :</label >\
            <input id="acc'+index+'"class="form-control"  />\
             </div >\
-           <div> <div class="col-md-6" > <div>  <label>Account type :</label>\
+           <div id="nextform'+index+'" hidden="true"> <div class="col-md-6" > <div>  <label>Account type :</label>\
           <input id="ACCty' + index + '" name="name' + index + '" class="form-control" ng-model="vm.insert'+index+'.acc"/><br />  </div>\
           <div><label> Print Type :</label >\
           <select id = "print'+index+'" class= "form-control" > <option>Sender only</option> </select> </div >    \
@@ -193,7 +215,7 @@ var controllerId="app.views.CustomerCon.Custcon";
           <div class="row"><div><div class="col-xs-8"> <label>Email To:</label>    \
           <input id="Email' + index + '" name="Email' + index + '" class="form-control"/><br /> </div>     </div>\
           <div>  <div class="col-xs-8"> <label>Remarks :</label>    \
-          <input type="remark'+remark+'"  class="form-control"></div> </div > </div >\
+          <input id="remark'+index+'" class="form-control"></div> </div > </div >\
           <a href="#customercon" class="remove">remove form</a>\
         </form>\
     ');
@@ -224,20 +246,26 @@ var controllerId="app.views.CustomerCon.Custcon";
                         swal("Account under Block for Printing");
                         return;
                     }
-                    if (data[0].TypeAcc !== "customer" && data[0].TypeAcc !== "Cash Sales") {
+                    if (data[0].typeAcc !== "Customer" && data[0].typeAcc !== "Cash Sales") {
                         swal("Connote Type" + data.TypeAcc + " is Not Allowed");
                         return;
                     } else {
-                        if (data[0].SubAccType === "Credit Customer RC") {
+                        document.getElementById("nextform").hidden = false;
+                        for (
+                            var nextform = 1; nextform < index; nextform++) {
+                            var hi = "nextform" + (nextform+1);
+                            document.getElementById(hi).hidden = false;
+                        }
+                        if (data[0].subAccType === "Credit Customer RC") {
                             document.getElementById("print").value = "Receiver Only";
                             document.getElementById("address").innerHTML = data.ccompanyname + " " + data.caddress1 + " " + data.caddress2 + " " + data.caddress3 + " " + data.cpostcode + " " + data.ctown + " " + data.cstate;
                             document.getElementById("addrceiver").innerHTML = data.ccompanyname + " " + data.caddress1 + " " + data.caddress2 + " " + data.caddress3 + " " + data.cpostcode + " " + data.ctown + " " + data.cstate;
                         } else {
                             if (data[0].cSender === "1") {
                                 document.getElementById("print").value = "sender Only";
-                                document.getElementById("address").innerHTML = data.ccompanyname + " " + data.caddress1 + " " + data.caddress2 + " " + data.caddress3 + " " + data.cpostcode + " " + data.ctown + " " + data.cstate;
+                                document.getElementById("address").innerHTML = data[0].ccompanyname + " " + data[0].caddress1 + " " + data[0].caddress2 + " " + data[0].caddress3 + " " + data[0].cpostcode + " " + data[0].ctown + " " + data[0].cstate;
                             }
-                             if ((data[0].cSender === "1" && data[0].cAllBr) || (data[0].cSender === "1" && data[0].cAllNtw === "1")) {
+                             if ((data[0].cSender === "1" && data[0].cAllBr==="1") || (data[0].cSender === "1" && data[0].cAllNtw === "1")) {
                                 // document.getElementById("print").value = "Receiver Only";
                                 var x = document.getElementById("print");
                                 var y = document.createElement("option");
@@ -257,32 +285,33 @@ var controllerId="app.views.CustomerCon.Custcon";
                 } else {
                     swal("Invalid GDEX Account");
                 }
-
+                document.getElementById("acctype").value = data[0].subAccType;
+                document.getElementById("acctype").disabled = true;
             };
 
 
             // insert data maybe ?
             vm.submit = function () {
-                for (var i = 0; i < (index+1); i++) {
-                    if (i === 1) {                       
+                for (var i = 1; i < (index+1); i++) {
+                    if (i === 1) {
                         insert0.acc = document.getElementById("acc1").value;
                         insert0.acctype = document.getElementById("ACCty1").value;
                         insert0.print = document.getElementById("print1").value;
                         insert0.sender = document.getElementById("sender1").value;
                         insert0.quantity = document.getElementById("quan1").value;
-                        insert0.receiver = document.getElementById("addrceiver1").value;
+                        insert0.receiver = document.getElementById("receiver1").value;
                         insert0.email = document.getElementById("Email1").value;
                         insert0.remark = document.getElementById("remark1").value;
                         insert0.Reqtype = document.getElementById("Reqtype1").value;
                         vm.dataDB.push(insert0);
                     }
-                   else if (i === 2) {
+                    else if (i === 2) {
                         insert1.acc = document.getElementById("acc2").value;
                         insert1.acctype = document.getElementById("ACCty2").value;
                         insert1.print = document.getElementById("print2").value;
                         insert1.sender = document.getElementById("sender2").value;
                         insert1.quantity = document.getElementById("quan2").value;
-                        insert1.receiver = document.getElementById("addrceiver2").value;
+                        insert1.receiver = document.getElementById("receiver2").value;
                         insert1.email = document.getElementById("Email2").value;
                         insert1.remark = document.getElementById("remark2").value;
                         insert1.Reqtype = document.getElementById("Reqtype2").value;
@@ -294,7 +323,7 @@ var controllerId="app.views.CustomerCon.Custcon";
                         insert2.print = document.getElementById("print3").value;
                         insert2.sender = document.getElementById("sender3").value;
                         insert2.quantity = document.getElementById("quan3").value;
-                        insert2.receiver = document.getElementById("addrceiver3").value;
+                        insert2.receiver = document.getElementById("receiver3").value;
                         insert2.email = document.getElementById("Email3").value;
                         insert2.remark = document.getElementById("remark3").value;
                         insert2.Reqtype = document.getElementById("Reqtype3").value;
@@ -306,7 +335,7 @@ var controllerId="app.views.CustomerCon.Custcon";
                         insert3.print = document.getElementById("print4").value;
                         insert3.sender = document.getElementById("sender4").value;
                         insert3.quantity = document.getElementById("quan4").value;
-                        insert3.receiver = document.getElementById("addrceiver4").value;
+                        insert3.receiver = document.getElementById("receiver4").value;
                         insert3.email = document.getElementById("Email4").value;
                         insert3.remark = document.getElementById("remark4").value;
                         insert3.Reqtype = document.getElementById("Reqtype4").value;
@@ -318,7 +347,7 @@ var controllerId="app.views.CustomerCon.Custcon";
                         insert4.print = document.getElementById("print5").value;
                         insert4.sender = document.getElementById("sender5").value;
                         insert4.quantity = document.getElementById("quan5").value;
-                        insert4.receiver = document.getElementById("addrceiver5").value;
+                        insert4.receiver = document.getElementById("receiver5").value;
                         insert4.email = document.getElementById("Email5").value;
                         insert4.remark = document.getElementById("remark5").value;
                         insert4.Reqtype = document.getElementById("Reqtype5").value;
@@ -330,7 +359,7 @@ var controllerId="app.views.CustomerCon.Custcon";
                         insert5.print = document.getElementById("print6").value;
                         insert5.sender = document.getElementById("sender6").value;
                         insert5.quantity = document.getElementById("quan6").value;
-                        insert5.receiver = document.getElementById("addrceiver6").value;
+                        insert5.receiver = document.getElementById("receiver6").value;
                         insert5.email = document.getElementById("Email6").value;
                         insert5.remark = document.getElementById("remark6").value;
                         insert5.Reqtype = document.getElementById("Reqtype6").value;
@@ -342,7 +371,7 @@ var controllerId="app.views.CustomerCon.Custcon";
                         insert6.print = document.getElementById("print7").value;
                         insert6.sender = document.getElementById("sender7").value;
                         insert6.quantity = document.getElementById("quan7").value;
-                        insert6.receiver = document.getElementById("addrceiver7").value;
+                        insert6.receiver = document.getElementById("receiver7").value;
                         insert6.email = document.getElementById("Email7").value;
                         insert6.remark = document.getElementById("remark7").value;
                         insert6.Reqtype = document.getElementById("Reqtype7").value;
@@ -354,7 +383,7 @@ var controllerId="app.views.CustomerCon.Custcon";
                         insert7.print = document.getElementById("print8").value;
                         insert7.sender = document.getElementById("sender8").value;
                         insert7.quantity = document.getElementById("quan8").value;
-                        insert7.receiver = document.getElementById("addrceiver8").value;
+                        insert7.receiver = document.getElementById("receiver8").value;
                         insert7.email = document.getElementById("Email8").value;
                         insert7.remark = document.getElementById("remark8").value;
                         insert7.Reqtype = document.getElementById("Reqtype8").value;
@@ -366,23 +395,25 @@ var controllerId="app.views.CustomerCon.Custcon";
                         insert8.print = document.getElementById("print9").value;
                         insert8.sender = document.getElementById("sender9").value;
                         insert8.quantity = document.getElementById("quan9").value;
-                        insert8.receiver = document.getElementById("addrceiver9").value;
+                        insert8.receiver = document.getElementById("receiver9").value;
                         insert8.email = document.getElementById("Email9").value;
                         insert8.remark = document.getElementById("remark9").value;
                         insert8.Reqtype = document.getElementById("Reqtype9").value;
                         vm.dataDB.push(insert8);
                     }
-                    else{
+                    else if(i===10){
                         insert9.acc = document.getElementById("acc10").value;
                         insert9.acctype = document.getElementById("ACCty10").value;
                         insert9.print = document.getElementById("print10").value;
                         insert9.sender = document.getElementById("sender10").value;
                         insert9.quantity = document.getElementById("quan10").value;
-                        insert9.receiver = document.getElementById("addrceiver10").value;
+                        insert9.receiver = document.getElementById("receiver10").value;
                         insert9.email = document.getElementById("Email10").value;
                         insert9.remark = document.getElementById("remark10").value;
                         insert9.Reqtype = document.getElementById("Reqtype10").value;
                         vm.dataDB.push(insert9);
+                    }else {
+                        swal(" the data is more than 10");
                     }
                 }
             };
