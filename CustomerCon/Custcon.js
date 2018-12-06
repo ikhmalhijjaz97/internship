@@ -1,7 +1,7 @@
 ﻿(function(){
 var controllerId="app.views.CustomerCon.Custcon";
-    angular.module('app').controller(controllerId, ['$scope','abp.services.app.custConReq',
-        function ($scope,custservices) {
+    angular.module('app').controller(controllerId, ['$scope','abp.services.app.custConReq','abp.services.app.branch'
+        function ($scope,custservices,branchservice) {
             var vm = this;
             vm.check = {
                 account: ''
@@ -415,6 +415,9 @@ var controllerId="app.views.CustomerCon.Custcon";
                     }else {
                         swal(" the data is more than 10");
                     }
+                    branchservice.create(vm.dataDB).then(function () {
+                        abp.ui.abp.notify.info("Saved Successfully");
+                    });
                 }
             };
             
