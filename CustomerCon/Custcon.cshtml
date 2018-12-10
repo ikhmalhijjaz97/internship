@@ -6,30 +6,31 @@
         <div class="modal-body" id="bodyse3">
             <form id="form1">
                 <div class="row">
-                   
+
                     <div class="col-xs-8">
                         <label>Account :</label>
-                        <input id="acc" class="form-control" ng-model="vm.check.account" />
+                        <input id="acc1"  class="ha form-control" ng-keypress="vm.listen($event)" />
+
                     </div>
-                   
+
                     @*<button class="btn btn-primary" ng-click="vm.checkacc(vm.check.account)">check</button><br />*@
                 </div>
-                <div id="nextform" hidden="true">
+                <div id="nextform1" hidden="true">
                     <div class="col-md-6">
                         <div>
                             <label>Account type :</label>
-                            <input id="acctype" class="form-control"/><br />
+                            <input id="acctype1" class="form-control" /><br />
                         </div>
                         <div>
                             <label>Print Type :</label>
-                          <select id="print" class="form-control">
-                              <option>Sender only</option>
-                          </select>
+                            <select id="print1" class="form-control">
+                                @*<option>Sender only</option>*@
+                            </select>
                         </div>
-                        <div>
+                        <div id="senddiv">
                             <label>Sender :</label>
-                            <input class="form-control" />
-                            <p id="address"></p>
+                            <input id="sender1" class="form-control" />
+                            <p id="address1"></p>
                         </div>
 
                     </div>
@@ -37,40 +38,40 @@
                         <div>
                             <label>Requisition Type:</label>
                             <div class="form-check">
-                                <input id="normal" class="form-check-input"  type="radio" />
+                                <input id="normal" class="form-check-input" value="Normal" type="radio" />
                                 <label>Normal</label>
                             </div>
                             <div class="form-check">
-                                <input id="rc" class="form-check-input"  type="radio" />
+                                <input id="rc" class="form-check-input" value="RC" type="radio" />
                                 <label>RC</label>
                             </div><br />
                             <div>
                                 <label>Quantity :</label>
-                                <input class="form-control"/>
+                                <input id="quan1" class="form-control" />
                             </div>
-                            <div>
+                            <div id="recediv">
                                 <label>Receiver :</label>
-                                <input class="form-control"/>
-                                <p id="addrceiver"></p>
+                                <input id="receiver1" class="form-control" />
+                                <p id="addrceiver1"></p>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div>
-                            
+                        <div id="email1">
+
                             <div class="col-xs-8">
                                 <label>Email To:</label>
-                                <input class="form-control" /><br />
+                                <input id="emaildat1" class="form-control" /><br />
                             </div>
-                         
+
                         </div>
                         <div>
-                           
+
                             <div class="col-xs-8">
                                 <label>Remarks :</label>
-                                <input class="form-control" />
+                                <input id="remark1" class="form-control" />
                             </div>
-                         
+
                         </div>
                     </div>
                 </div>
@@ -84,7 +85,14 @@
             <button class="btn btn-primary" ng-click="vm.submit()">Submit</button>
         </div>
     </div>
-  
+    @*<script language="javascript">
+        var e;
+      function listener(e){
+     if (e.key ==="Enter") {
+                        var x = document.getElementById(ids).value;
+                        vm.checkacc(x);
+                    }
+      }
+    </script>*@
 
-    
 </div>

@@ -21,5 +21,10 @@ namespace LibraryApp.CUSTOMERREQUISTION
         {
             return _customerManager.getcustomerdata(Acc);
         }
+
+        public IEnumerable<avoid> getcnban()
+        {
+            return _customerManager.getcnban();
+        }
     }
 }

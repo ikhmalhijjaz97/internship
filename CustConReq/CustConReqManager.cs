@@ -10,6 +10,29 @@ namespace LibraryApp.Models.CustConReq
 {
     public class CustConReqManager : DomainService, ICustConReqManager
     {
+        public IEnumerable<avoid> getcnban()
+        {
+            SqlConnection con3 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["fifth"].ConnectionString);
+            con3.Open();
+            List<avoid> bancn = new List<avoid>();
+            string ban = "";
+            ban = "SELECT * FROM [CNAS].[cnas].[CNType] where cStatus = 'A' and cPrintCtrl = 'E'";
+            SqlCommand com3 = new SqlCommand(ban, con3);
+            using (SqlDataReader reader = com3.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    avoid data = new avoid();
+                    data.cCNTypeCode = reader["cCNTypeCode"].ToString();
+                    bancn.Add(data);
+                }
+            }
+            con3.Close();
+            return bancn;
+
+
+        }
+
         public IEnumerable<CustConReq> getcustomerdata(string Acc)
         {
             SqlConnection try2 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["six"].ConnectionString);

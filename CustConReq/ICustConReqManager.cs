@@ -11,5 +11,6 @@ namespace LibraryApp.Models.CustConReq
     {
         IEnumerable<CustConReq> getcustomerdata(string Acc);
         IEnumerable<printctrl> getprintdata(string cntype);
+        IEnumerable<avoid> getcnban();
     }
 }

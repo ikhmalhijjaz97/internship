@@ -35,4 +35,8 @@ namespace LibraryApp.Models.CustConReq
        // public string cCNType { get; set; }
         public string cPrintCtrl { get; set; }
     }
+    public class avoid {
+        public string cCNTypeCode { get; set; }
+    }
+
 }

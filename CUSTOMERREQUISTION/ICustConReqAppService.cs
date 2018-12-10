@@ -11,5 +11,6 @@ namespace LibraryApp.CUSTOMERREQUISTION
    public interface ICustConReqAppService: IApplicationService
     {
         IEnumerable<CustConReq> getall(string Acc);
+        IEnumerable<avoid> getcnban();
     }
 }
